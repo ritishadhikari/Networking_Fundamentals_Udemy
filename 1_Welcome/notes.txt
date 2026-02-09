@@ -1,0 +1,16 @@
+A computer network is a set of computers sharing resources located on or provided by network nodes. 
+Computers use communication protocols over digital interconnections to communicate with each other
+
+Protocols include IPVersion-4 and HTTP/HTTPs, DNS, FTP, etc
+
+A Host is a device connected to a computer network. A host may work as a server offering information resources, services, and applications to users
+
+A port number is a way to identify a specific process to which a network message is to be forwarded when it arrives
+at a server
+
+SSL is an older technology that contains some security flaws. Transport Layer Security (TLS) is the upgraded version of SSL that fixes existing SSL vulnerabilities.
+
+Network Interface Card (NIC) gives us access to a network using Copper, Fibre or Wifi. It is a computer hardware component that connects a computer to a computer network.
+
+A media access control address (MAC address) is a unique identifier assigned to a network interface controller (NIC) for use as a network address in communications within a network segment. These are recognizable as six groups of two hexadecimal digits, separated by hyphens, colons, or without a separator.
+
