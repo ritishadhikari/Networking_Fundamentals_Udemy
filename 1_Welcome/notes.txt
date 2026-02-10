@@ -14,3 +14,26 @@ Network Interface Card (NIC) gives us access to a network using Copper, Fibre or
 
 A media access control address (MAC address) is a unique identifier assigned to a network interface controller (NIC) for use as a network address in communications within a network segment. These are recognizable as six groups of two hexadecimal digits, separated by hyphens, colons, or without a separator.
 
+Bus Networks use cables and if the cable broke, then the entire network was dead and no NIC device would be eligible for transmitting signal or receiving response from another NIC device
+
+There is a central device in a Star Topology
+
+Unicast: One device talking to one device
+Broadcast: One device talking to everyone
+Multicast: Message sent to a sub group of people
+
+Bridges understands the MacAddresses of an NIC before transmitting the information. This is unlike in a hub where information is broadcasted from one NIC to the rest of the NIC over a network.
+
+Bridges has less ports and uses softwares while Switches use Hardware and has more ports. They however use MacAddresses to discover where devices are and forward traffic according to the MAC Address being discovered. That reduces the collissions in the network and gives a greater throughput
+
+In an Unmanaged switch, you can't change the configuration and hence is cheaper than a Managed Switch where you can change the configuration
+
+In the old days NIC devices were connected to switches which in turn would be connected to the router and that in turn would be connected to the Internet or Wide Area Network
+
+IDS or Intruder Detection System is a kind of firewall that detects and notifies (but does not prevents) a user from some malicious events happening. Likewise IPS or Intruder Protection system goes one step further and prevents an attacker from attacking.
+
+Access Point converts digital signals into ethernet signals and in a home routers they are signified by the antennas
+
+Switch connects devices within the same network, whereas Routers connects different networks togather (LAN to WAN). Switch uses MAC address for identification while routers uses IP Address for identification.
+
+
