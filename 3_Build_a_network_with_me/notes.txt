@@ -1,0 +1,8 @@
+Important Commands :
+
+ipconfig: To get the IPAddress of various devices
+
+ipconfig/all
+
+nslookup <website url> : Lists the IPaddress related to the website
+
