@@ -17,3 +17,7 @@ In the switch cli:
  - show mac address-table : In disable mode see the mac address in the network
 
 A router would learn the connectivity between computers and servers when they communicate with one another by the `show mac address-table` command
+
+arp -a : Linking the Mac Address and the IP Address with the device with which it has made the connection
+
+arp -d : Delete the Mac Address and the IP Address with the device with which it has made the connection
