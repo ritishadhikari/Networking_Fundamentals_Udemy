@@ -6,3 +6,14 @@ ipconfig/all
 
 nslookup <website url> : Lists the IPaddress related to the website
 
+In the switch cli:
+ - show version: shows the version of the switch
+ - ? : Shows the commands in the switch
+ - enable: Enable the switch to do various operations with the switch
+ - hostname s1 : to name the switch as s1
+ - config t : To get back to global configuration mode
+ - end : To return back to the enable mode 
+ - exit : Take you out of the switch
+ - show mac address-table : In disable mode see the mac address in the network
+
+A router would learn the connectivity between computers and servers when they communicate with one another by the `show mac address-table` command
