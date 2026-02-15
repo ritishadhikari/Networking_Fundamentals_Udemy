@@ -1,0 +1,36 @@
+Protocols: A network protocol is a set of rules that define how data is formatted and processed, allowing computers with different hardware and software to communicate effectively. It acts as a common language, ensuring seamless data exchange across a network.
+
+Open Systems Inteconnection Model (OSI) layers:
+    - 7 : Application (Application in TCP/IP) (Application in Hybrid)
+    - 6 : Presentation (Application in TCP/IP) (Application in Hybrid)
+    - 5 : Session (Application in TCP/IP) (Application in Hybrid)
+    - 4 : Transport (Transport in TCP/IP) (Transport in Hybrid)
+    - 3 : Network  (Internet in TCP/IP) (Network in Hybrid)
+    - 2 : Data Link (Link in TCP/IP) (Data Link in Hybrid)
+    - 1 : Physical (Link in TCP/IP) (Physical in Hybrid)
+
+OSI layer :
+    - Reduces Complexity
+    - Standardization
+    - Modular Engineering
+    - Interoperable Technology
+    - Accelarates Evolution
+    - Simplifies teaching and learning
+
+ Devices and Protocols for the hybrid layer:
+    - 5-7 : Application : (HTTP, HTTPS, Telnet, FTP, TFTP)
+    - 4 : Transport : (TCP/UDP)
+    - 3 : Network : (IPv4, IPv6) (Router)
+    - 2 : Data Link : 2 : (Ethernet II / PPP, HDLC) (Bridge/ Switch)
+    - 1 : Physical : (Ethernet/ Wifi) (Hub/ Repeater)
+
+Layer Definition:
+    - 5 : Application : Represents the Data Users. Encodes and controls the dialog: Transmits Data
+    - 4 : Transport : Supports communication between end devices across a diverse network : Transmits Segments
+    - 3 : Network : Provides logical addressing and determines the best path through the network  : Transmits Packets
+    - 2 : Data Link : Manages physical addressing (MAC), framing, and error correction between directly connected devices. Transmits Frames
+    - 1 : Physical : Transmits raw bitstreams as electrical, optical, or radio signals over physical media cables or wireless. Transmits Bits
+
+
+
+  

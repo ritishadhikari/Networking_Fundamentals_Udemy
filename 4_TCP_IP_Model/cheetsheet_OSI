@@ -1,0 +1,28 @@
+
+7,"Application","The Interface","User interaction. ""I want to send an email.""","Data","HTTP, SMTP, FTP, Browsers"
+
+6,"Presentation","The Translator","Formatting & Encryption. ""Translate to English & lock it.""","Data","SSL/TLS, JPEG, ASCII, GIF"
+
+5,"Session","The Manager","Conversation control. ""Keep this chat separate from that download.""","Data","APIs, Sockets, NetBIOS"
+
+4,"Transport","The Shipper","Reliability & Order. ""Did all 10 boxes arrive? Resend box 3.""","Segment","TCP, UDP, Firewalls"
+
+3,"Network","The GPS","Routing & Addressing. ""Find the path to USA.""","Packet","IP Address, Routers"
+
+2,"Data Link","The Local Truck","Physical Addressing. ""Deliver to the device in this room.""","Frame","MAC Address, Switches"
+
+1,"Physical","The Road","Transmission. ""Just raw electricity/light.""","Bit","Cables, Hubs, Repeaters"
+
+
+
+-------------------GEMINI-------------------------
+
+"If the problem is...",Check Layer...,Because...
+"My cable is unplugged.",Layer 1,"The physical medium is broken."
+"I have no Wi-Fi bars.",Layer 1,"The radio signal is weak."
+"I can't see the printer in my room.",Layer 2,"The Switch or MAC address negotiation failed."
+"I can't load <https://www.google.com/search?q=Google.com> (but printer works).",Layer 3,"The Router can't find a path to the internet (IP issue)."
+" The video is buffering / glitchy.",Layer 4,"Packets are being dropped or arriving out of order (UDP/TCP issue)."
+"The website says 'Connection Timed Out'.",Layer 5,"The session couldn't be established or was dropped."
+"The page is gibberish / Weird characters.",Layer 6,"The browser can't decode the format (encoding issue)."
+"404 Not Found" or "500 Error",Layer 7,"The server is working, but the application can't find the specific page."
