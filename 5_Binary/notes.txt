@@ -1,0 +1,3 @@
+All computers function by using a system of switches that can either be on or off. On=1, Off=0. Binary Values are 0 and 1.
+
+ 11000000.10101000.00000001.01001000 = 192.168.1.72

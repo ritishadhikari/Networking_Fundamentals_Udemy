@@ -1,0 +1,31 @@
+Mac Addresses and IPV6 are written in Hexadecimals
+
+To convert a decimal number into a hexadecimal, first break it into binary of 8 numbers. Than break them into two parts of four numbers. Then assign each part into into its hexademial number
+
+Decimal : 128
+Binary : 1000 0000
+Hexadecimal : 80
+
+Decimal : 199
+Binary : 1100 0111
+Hexadecimal : C7
+
+Decimal : 229
+Binary : 1110 0101
+Hexadecimal : E5
+
+Hexadecimal : E9
+Binary : 11101001
+Decimal : 233
+
+Decimal : 10.1.12.123
+Binary : 0000 1010.0000 0001.0000 1100.0111 1011
+Hexadecimal : 0A.01.0C.7B
+
+Hexadecimal : AB
+Binary : 10101011
+Decimal : 171
+
+Decimal : 12.254.234.133
+Binary : 0000 1100.1111 1110.1110 1010.1000 0101
+Hexadecimal : 0C.FE.EA.85
