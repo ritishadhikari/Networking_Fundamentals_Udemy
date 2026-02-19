@@ -1,0 +1,47 @@
+IP Address uiquely identifies a device on a network
+Every device on the internet has a unique IP address 
+
+nslookup google.com : Will give the list of IP Addresses tagged to the website
+
+IP address is a connectionless protocol and packets are treated differently and may take different paths like :
+    - Load Balancing
+    - OSPF which checks the Bandwidth
+    - RIP which checks the HopCount
+
+IP Address has heirarchical structure for routing and consists of two portions:
+    - Network portion:
+        - Identifies a specific network
+        - Routers maintain routing tables that contain the network
+        - Look at destination of IP address and match to network address
+    - Host portion:
+        - Identifies a specific endpoint on a network
+        - ex. server, printers, PCs, IPhone, IPad, etc
+
+Devices in a network or a subnet have a unique IP address just like our house has a unique house number in a specific street
+
+IP delivery and routing fetaures:
+    - Best effort delivery
+    - No data recovery features
+    - No retransmissions
+    - No builtin sessions
+
+IP addresses are 32 bits in size and are typically written in dotted decimal notation
+
+Address Classes:
+    - Class A - unicast Traffic
+        - First 8 bits denotes networks while the last 24 bits denotes hosts
+        - Range between 0.0.0.0 to 127.255.255.255
+        - so the first octet will always be 0
+        - 00000000 to 01111111 or 0 till 127
+        - Actually it is from 1.0.0.0 till 126.255.255.255. 127 is used for loopback and 0 is configured for the default network
+    - Class B - unicast Traffic
+        - First 16 bits denotes networks while the last 16 bits denotes hosts
+        - Range between 128.0.0.0 to 191.255.255.255
+        - First Octet Range between 10000000 to 10111111 or 128 till 191
+
+    - Class C - unicast Traffic
+    - Class D - multicast Traffic
+    - Class E - reserved for future or experimental purposes
+
+Class A, B,C were replaced by Classless Internet Domain Routing (CIDR) in 1993
+
