@@ -38,10 +38,36 @@ Address Classes:
         - First 16 bits denotes networks while the last 16 bits denotes hosts
         - Range between 128.0.0.0 to 191.255.255.255
         - First Octet Range between 10000000 to 10111111 or 128 till 191
-
     - Class C - unicast Traffic
+        - First 24 bits are the networks while the last 8 bits are denoted as the host
+        - Range between 192.0.0.0 to 223.255.255.255.255
+        - First octet range between 11000000 till 11011111
     - Class D - multicast Traffic
+        - Specially used by routers for speaking with other devices
+        - Range between 224.0.0.0 to 239.255.255.2555
+        - First octet range between 11100000 till 11101111
     - Class E - reserved for future or experimental purposes
+        - It is a reserved address for bordcasting
+        - Range between 240.0.0.0 to 255.255.255.2555
+        - First octet range between 11100000 till 11101111
 
 Class A, B,C were replaced by Classless Internet Domain Routing (CIDR) in 1993
-
+ 
+Special Addresses:
+    - Directed Broadcast Address
+        - host sends data to all devices on a specific network
+        - Binary 1 is populated in the entire host portion of the address
+        - Example address:  172.31.255.255
+        - Routers can route directed broadcast
+        - By default it is disabled so as to prevent hacking and Denial of Service Attacks
+    - Local Broadcast Address:
+        - it is used to communicate with all devices on local network
+        - looks like 11111111.11111111.11111111.11111111 in binary or like 255.255.255.255 in decimals
+        - ex. host requesting an IP address from a DHCP server
+        - always dropped by routers and can be configured by DHCP forwarding or DHCP relays (in the router) so that the DHCP server can be contacted by the router and an IP Address can be provided. Even after configuring, the router drops this local broadcast and converts this into an unicast and then sends to the DHCP server for accepting the requests and providing the response
+    - Local Loopback Address:
+        - it is used to let a system send a message to itself for testing
+        - this is very useful to make sure that the TCP/IP stack is correctly installed on a machine
+        - 127.0.0.1 or anything starting with 127. -> Loopback adddress and cannot be allocated as an IP addresses in the internet. 
+        - ::1 -> for IPV6 
+        - routers have loopback addresses which are not the same as the local loopback address
