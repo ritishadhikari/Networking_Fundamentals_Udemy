@@ -71,3 +71,47 @@ Special Addresses:
         - 127.0.0.1 or anything starting with 127. -> Loopback adddress and cannot be allocated as an IP addresses in the internet. 
         - ::1 -> for IPV6 
         - routers have loopback addresses which are not the same as the local loopback address
+    - Private Address:
+        - RFC1918 (RFC is request for comments) talks about pivate IP addresses and are non-routable on the internet
+        - The Internet assigned numbers authority (IANA) has reserved the following three blocks of the IP address space for private internets
+            - 10.0.0.0 - 10.255.255.255 (10/8 prefix) - 1 Class A Network
+            - 172.16.0.0 - 172.31.255.255 ( 172.16/12 prefix) - 16 Class B Networks
+            - 192.168.0.0 - 192.168.255.255 (192.168/16 prefix) - 256 Class C Networks
+        - NAT will tranlate one of these IP addresses to a publicly routable address when we are searching to some external website through a router
+    - IPV4 Link - Local Addresses:
+        - Scenario happens when a PC is setup and there is no DHCP server available
+        - The PC sets up internally an IP address of 169.254.0.0/16
+        - Modern computers allow two computers to communcate when there are no DHCP servers available
+        - Host randomly generate the host specific part of the address (169.254..)
+        - So a PC without a DHCP server can easily commuicate with an address ex. (169.254.1.1) with another PC with an address ex. (169.254.1.2)
+        - Users will be able to communicate with other devices on the local segment or local link but they will not be able to connect with devices on the internet or devices on the subnet
+
+Subnet Mask:
+    - It is used to determine which part of the address is the network portion and which part of the network is the host portion
+    - It allows a PC to determine that a device it wants to communicate with is a remote device or a local device
+    - If two PCs are not in the same subnet, then they will forward to the default gateway, else they will interact directly
+    - Two PCs for ex. 10.1.1.1 and 10.1.2.1 are in the same subnet if they are using the /16 mask. Similary if they are using the /24 mask, then they are in different subnets
+    - Network mask allows us to determine the portion of address which is the host and which is the network
+    - Class A,B and C networks have default masks, also known as natural masks 
+        - Class A: 255.0.0.0
+        - Class B: 255.255.0.0
+        - Class C: 255.255.255.0
+    - Two simple rules:
+        - Any address bits which have corresponding mask bit set to 1 represents the network ID
+        - Any address bits that have corresponding mask bits set to 0 represents the node ID
+    - Modern computers and routers do not care about IP classes. They only care about the mask.
+    - 1.1.1.1 (IP) and 255.255.0.0 (mask) signifies network as 1.1. and host as .1.1
+    - 10.3.1.3 (IP) and 255.0.0.0 (mask) signifies network as 10 and host as 3.1.3 
+    - To work out if another host is local, check the network portion of the address (through their masks) and then compare it to the other host. If they are the same, then they are local (and will send the ARP message to fetch the MAC address), else they are remote to one another (and will send the details over the default gateway)
+    - Cisco devices do not support discontiguous mask   
+        - 11110000.11111111.00000110.11000000=240.255.3.191
+    - Only contiguous subnet masks are supported
+        - 11111111.11110000.00000000.00000000=255.240.0.0
+        - 11111111.11111111.11000000.00000000=255.255.192.0
+
+Classless Inter-Domain Routing (CIDR):
+    - Introduced in 1993 and CIDR replaces classful IP addresses
+    - Allows the usage of Variable Length Subnet Mask (VLSM)
+    - Uses notations 10.0.0.0/8 notation rather than 10.0.0.0 255.0.0.0
+    - Mask has to be contiguous 1s as have been mentioned previously
+    - 255.224.0.0 mask is same as 11111111.11100000.0000000.0000000 which is again same as /11 and the divider between the network and the host is not in the octet boundary, but somewhere in the middle.
