@@ -1,0 +1,33 @@
+ Out-of-band data in computer is a separate stream of data from the main data stream
+
+ In the older days when laptops supported female connectors, We would connect DB9 female connnector to the laptop and the RJ45 cable to the router. We avoided connecting the both RJ45 to both laptop and the router.
+
+ Later when Laptops did not come with the female connectors, there was an additional usb to female connector, where usb connected to the laptop and the female connected to the male RJ45 cable of the router.
+
+ Modern routers in Cisco supports USB connectivity. So it is USB to USB between Laptop and Router.
+
+ 
+We connect PC with router through a console cable and not through Fast Ethernet in Packet Tracer, which we seldom do while connecting a switch to a PC.
+
+In a router cli, in the enable mode, if we type in `show ip int brief`, we can see the ports it has and its IP addresses (should it be assigned)
+
+# VVI #
+To configure an IP address of a router, we fo the following:
+    - enter the router cli
+    - en
+    - conf t
+    - int g/0/0/0 (whichever interface we would want to tune - interface ?)
+    - ip address 10.1.1.1 255.255.255.0
+    - no shut (to enable the IP 
+    address after configuring)
+    - exit
+    - hostname R1 (to rename the host)
+    - end   
+    - copy running-config startup-config (set up the routers configuration)
+
+How the notation changes:
+    - (user mode) : router> 
+    - en (privilege) : router#
+    - conf t (global) : router(config)#
+    - getting inside a port/interface : Router(config-if)#
+
