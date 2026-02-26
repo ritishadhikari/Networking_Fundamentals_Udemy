@@ -22,9 +22,9 @@ Binary Method:
         172.16.0010 0011.01111011
 
         Subnet = 172.16.00100000.00000000 or 172.16.32.0
-        Host 1 = 172.16.00100000.00000001 or 
+        First Host = 172.16.00100000.00000001 or 
         172.16.32.1 
-        Host 2 = 172.16.00101111.11111110 or 
+        Last Host = 172.16.00101111.11111110 or 
         172.16.47.254
         Broadcast = 172.16.00101111.11111111 or 172.16.47.255
 
@@ -41,4 +41,95 @@ Binary Method:
 
 Quick Method:
     - Shortcut Table:
-        - 
+        - 128   64    32    16   8     4     2    1
+          128   192   224   240  248   252   254  255
+        - Idea is to subtract the first row from 256 to get the second row
+    
+    - Examples  
+        - First Example
+        172.16.35.123/20 or 172.16.35.123 255.255.240.0
+        * where is the subnet mask ne 255 
+        * take note for the octet   (3rd Octet)
+        * Subtract the mask value that is not 255 from 256  (256-240=16)    This tells us that here networks are incrementing in the values of 16
+        * Work out where the octet from the IP, start at zero and and go until you past the value in the earlier step       (35 lies between 32 and 48)
+        * Subnet lies in the lower value from the earlier question      (hence subnet is 172.16.32.0)
+        * Broadcast Address is Next Network - 1     (hence 172.16.47.255)   (*next network was 48 and not 32)
+        * First Host lies plus one from the subnet      (hence first address is 172.16.32.1)
+        * Last Host lies minus 1 from the broadcast address (hence last address is 172.16.47.254)
+    - Second Example
+        172.16.129.1/17 or 172.16.129.1 255.255.128.0
+        - Subnet : 172.16.128.0
+        - Broadcast Address : 172.16.255.255
+        - First Host : 172.16.128.1
+        - Last Host : 172.16.255.254
+        
+How to divide a network/subnet when given:
+    - Specific number of host is required
+    - Specific number of subnets are required
+
+------------------------------------------
+192.168.1.0/24 255.255.255.0
+192.168.1.0
+192.168.1.255
+192.168.1.1
+192.168.1.254
+------------------------------------------
+
+The total number of devices supporting a specific device in a subnet is:
+    - 2^n - 2 where n is the number of network bits allowed
+    - In a Class 1 address (with 24 network bits and 8 host bits), the number would be 2^24-2 = 16777216-2 = 16777214
+
+Subnetting:
+    - Best way of subnetting is to use the binary method:
+    - It involves stealing or taking away bits from the host portion of an address and allocating the stolen bits to the network portion of a new address
+    - Number of hosts = 2^n-2 and this time count host bits from the right to the left
+    - Number of networks = 2^n and count network bits from left to the right
+    - Shortcut Table:
+        2^1=2
+        2^2=4
+        2^3=8
+        2^4=16
+        2^5=32
+        2^6=64
+        2^7=128
+        2^8=256
+        2^9=512
+        2^10=1024
+    - Question 1: ABC Ltd has been allocated subnet 10.1.1.0/24 for a small office in London. Paul the network admin, needs to split this subnet into smaller subnets. Each subnets needs to support 14 machines.
+        - Hosts required - 14, i.e., 2^4-2
+        - Hence we need to take 4 bits from the host portion and allocate to the network portion
+        - Convert the host portion of the original network into binary: 10.1.1.0000 0000
+        - Work out the various subnets and to work on the subnets, go through the various binary combinations for the subnet portion of the address (0000,0001,0010,0011,0100...1111) 
+        - So various new networks would be (note the difference of 16 in the second last IP address)
+            - 10.1.1.0000 0000/28 or 10.1.1.0/28
+            - 10.1.1.0001 0000/28 or 10.1.1.16/28
+            - 10.1.1.0010 0000/28 or 10.1.32/28
+            - 10.1.1.0011 0000/28 or 10.1.48/28
+            - 10.1.1.0100 0000/28 or 10.1.64/28
+            - 10.1.1.0101 0000/28 or 10.1.80/28
+            - 10.1.1.0110 0000/28 or 10.1.96/28
+                .
+                .
+                .
+            - 10.1.1.1111 0000/28 or 10.1.240/28
+        - Total number of subnets = 2^number of additional bits created in the octet = 16
+
+    - Question 2: ABC Ltd has been allocated subnet 10.128.192.0/18 for a small office in London. Paul the network admin, needs to split this subnet into smaller subnets. Paul requires 30 subnets with as many hosts as possible. 
+        - 10.128.11 000000.00000000
+        - work from left to the right
+        - 2^5 = 32 (so we would be ending up with 32 subnets and not just 30)
+        - Hence we need to steal 5 bits from the host portion of the address and allocate that to the network portion
+        - So now 23 bits would be allocated to the networks instead of the original 18
+        - 10.128.1100000 0.00000000 (new look for the domain) 
+        - So various new networks would be (note the difference of 2 in the second last IP address)
+            - 10.128.1100000 0.00000000/23 or 10.128.192.0/23
+            - 10.128.1100001 0.00000000/23 or 10.128.194.0/23
+            - 10.128.1100010 0.00000000/23 or 10.128.196.0/23
+            - 10.128.1100011 0.00000000/23 or 10.128.198.0/23
+            - 10.128.1100100 0.00000000/23 or 10.128.200.0/23
+                .
+                .
+                .
+            - 10.128.1111111 0.00000000/23 or 10.128.254.0/23 
+
+172.16.1.1
