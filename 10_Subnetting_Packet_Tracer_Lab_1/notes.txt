@@ -1,0 +1,253 @@
+Question 1:
+    Configure the network as follows:
+        - You have been allocated subnet 192.168.1.0/24 and you are required to subnet this into four subnets as follows:
+        - Subnet 1 for site 1
+        - Subnet 2 for the link between R1 and the internet router
+        - Subnet 3 for site 2
+        - Subnet 4 for the link between R2 and the interner router
+        - Configure the routers per the instructions in the diagram
+        - Configure the switches with the second last IP address in the subnet
+        - Configure the DHCP servers with the third last IP address in the subnet and configure the DHCP server to allocate IP addresses to the clients
+        - Verify that PCs can access cisco.com and facebook.com using their browsers
+Solution 1:
+    192.168.1.0/24 -> The four networks would be:
+	192.168.1.00 000000 -> 192.168.1.0/26
+	192.168.1.01 000000 -> 192.168.1.64/26
+	192.168.1.10 000000 -> 192.168.1.128/26
+	192.168.1.11 000000 -> 192.168.1.192/26
+
+                             +-------------------+
+                             |                   |
+                             |  Internet Router  |
+                             |   (Simulates ISP) |
+                             +--+-------------+--+
+                              |                 |
+                .66 (Int 1)   |                 |  .194 (Int 2)
+                              |                 |
+            Subnet 2 (WAN)    |                 |   Subnet 4 (WAN)
+           192.168.1.64/26    |                 |   192.168.1.192/26
+                              |                 |
+                .65 (WAN Int) |                 | .193 (WAN Int)
+                      +-----+-+                 +-+-----+
+                      |       |                 |       |
+                      |  R1   |                 |  R2   |
+                      |       |                 |       |
+                      +---+---+                 +---+---+
+                  .1 (LAN Int)|                 |.129 (LAN Int)
+                              |                 |
+            Subnet 1 (LAN)    |                 |  Subnet 3 (LAN)
+            192.168.1.0/26    |                 |192.168.1.128/26
+                              |                 |
+                      +---+---+                 +---+---+
+                      |       |                 |       |
+                      | Switch|                 | Switch|
+                      |   1   |                 |   2   |
+                 .61  +-+---+-+            .189 +-+---+-+
+                        |   |                     |   |
+                    +---+   +---+             +---+   +---+
+                    |           |             |           |
+                 +--+--+     +--+--+       +--+--+     +--+--+
+                 |PC A |     |DHCP |       |PC B |     |DHCP |
+                 +-----+     |Srv 1|       +-----+     |Srv 2|
+                (DHCP: .2)     .60        (DHCP: .130)   .188
+    Exact IP Address Breakdown
+    Here is the device-by-device list of what you need to configure. The subnet mask for every device on this list will be 255.255.255.192.
+
+    Subnet 1: Site 1 LAN (192.168.1.0/26)
+    Usable Range: 192.168.1.1 - 192.168.1.62
+
+    Router 1 (LAN Interface): 192.168.1.1 (Standard practice is the first usable IP)
+
+    Switch 1 (Management IP): 192.168.1.61 (Rule: Second last IP -> 62 - 1)
+
+    DHCP Server 1: 192.168.1.60 (Rule: Third last IP -> 62 - 2)
+
+    PC A: Receives its IP automatically from the DHCP Server. It will likely get 192.168.1.2 (the first available IP in the DHCP pool).
+
+    Subnet 2: Link between R1 and Internet Router (192.168.1.64/26)
+    Usable Range: 192.168.1.65 - 192.168.1.126
+
+    Router 1 (WAN Interface): 192.168.1.65 (First usable IP)
+
+    Internet Router (Interface facing R1): 192.168.1.66 (Second usable IP)
+
+    Subnet 3: Site 2 LAN (192.168.1.128/26)
+    Usable Range: 192.168.1.129 - 192.168.1.190
+
+    Router 2 (LAN Interface): 192.168.1.129 (First usable IP)
+
+    Switch 2 (Management IP): 192.168.1.189 (Rule: Second last IP -> 190 - 1)
+
+    DHCP Server 2: 192.168.1.188 (Rule: Third last IP -> 190 - 2)
+
+    PC B: Receives its IP automatically from the DHCP Server. It will likely get 192.168.1.130.
+
+    Subnet 4: Link between R2 and Internet Router (192.168.1.192/26)
+    Usable Range: 192.168.1.193 - 192.168.1.254
+
+    Router 2 (WAN Interface): 192.168.1.193 (First usable IP)
+
+    Internet Router (Interface facing R2): 192.168.1.194 (Second usable IP)
+
+
+Question 2: 
+    In a previous lab, 192.168.1.0/24 was broken up to support the subnets in this lab. Now you need to subnet the network to extend and conserve IP addresses:
+    1. Break up 192.168.1.64/26 to support as many subnets as possible with 8 Hosts per subnet.
+    2. Allocate the first new subnet to site 3
+    3. Manually configure all devices in the subnet
+        - Router with last IP address in subnet
+        - Switch with the 2nd last IP address
+        - Hosts from the first IP address
+    4. Subnet the last new subnet you got from 192.168.1.64/26 with /30 masks and then allocate the subnets to the serial links. Configure the routers appropriately.
+    5. Verify that PCs can access cisco.com and facebook.com using their browsers
+
+Solution 2:
+    192.168.1.64/26 -> 192.168.1.01000000
+    2^4-2=14, so 4 host from the left would be preserved
+    192.168.1.0100 0000/28
+    New Subnets:
+        192.168.1.0100 0000/28 = 192.168.1.64/28
+        192.168.1.0101 0000/28 = 192.168.1.80/28
+        192.168.1.0110 0000/28 = 192.168.1.96/28
+        192.168.1.0111 0000/28 = 192.168.1.112/28
+    
+    For step 2 and step 3: 
+
+    We are effectively "stealing" an IP block that was previously used for a single wire (the WAN link for R1) and recycling it to build an entirely new branch office (Site 3).
+
+    Because of this, the architecture changes in two major ways:
+
+    A new site is born: We must add a third router (R3), a third switch, and new PCs for Site 3.
+
+    The WAN links are temporarily broken: Because you took the 192.168.1.64/26 block away from R1's connection to the Internet Router to build Site 3, R1 currently has no IP address to talk to the ISP! (This is exactly what Step 4 will fix, so we will leave those links blank for now).
+
+                             +-------------------+
+                             |                   |
+                             |  Internet Router  |
+                             |   (Simulates ISP) |
+                             +-+-------+-------+-+
+                               |       |       |
+            (WAN IPs blank     |       |       |     (WAN IPs wait
+            until Step 4)      |       |       |      for Step 4)
+                               |       |       |
+                               |       |       |
+                      +-----+-+     +-+-----+     +-+-----+
+                      |       |     |       |     |       |
+                      |  R1   |     |  R3   |     |  R2   |
+                      |       |     |       |     |       |
+                      +---+---+     +---+---+     +---+---+
+                  .1 (LAN)|     .78 (LAN)|            |.129 (LAN)
+                          |              |            |
+            Subnet 1 (LAN)| Site 3 (LAN) |            | Subnet 3 (LAN)
+            192.168.1.0/26|192.168.1.64/28            | 192.168.1.128/26
+                          |              |            |
+                      +---+---+      +---+---+    +---+---+
+                      |       |      |       |    |       |
+                      | Switch|      | Switch|    | Switch|
+                      |   1   |      |   3   |    |   2   |
+                 .61  +-+---+-+  .77 +-+---+-+ .189 +-+---+-+
+                        |   |          |   |          |   |
+                    +---+   +---+  +---+   +---+  +---+   +---+
+                    |           |  |           |  |           |
+                 +--+--+     +--+--+--+--+   +--+--+--+--+   +--+--+
+                 |PC A |     |DHCP |PC C |   |PC D |PC B |   |DHCP |
+                 +-----+     |Srv 1+-----+   +-----+-----+   |Srv 2|
+                (DHCP: .2)     .60(Static: .65) (.66) (DHCP: .130).188
+    
+    For Step 4:
+        The last Subnet that was achieved was: 
+        192.168.1.0111 0000/28 = 192.168.1.112/28
+        Subnetting with /30 mask means = 192.168.1.011100 00/30
+        Which is equivalent to 192.168.1.112/30
+        New Hosts are :
+            192.168.1.011100 00 = 192.168.1.112/30 : Network
+            192.168.1.011100 01 = 192.168.1.113/30 : 1st Host
+            192.168.1.011100 10 = 192.168.1.114/30 : 2nd Host
+            192.168.1.011100 11 = 192.168.1.115/30 : Broadcast
+        The other subnets that will be formed are:
+            192.168.1.011101 00/30 = 192.168.1.116/30 (Hosts: .117, .118)
+            192.168.1.011110 00/30 = 192.168.1.120/30 (Hosts: .121, .122)
+            192.168.1.011111 00/30 = 192.168.1.124/30 (Hosts: .125, .126)
+    The Updated architecture diagram after assigning the IP Address is:
++-------------------+
+                             |                   |
+                             |  Internet Router  |
+                             |   (Simulates ISP) |
+                             +-+-------+-------+-+
+                               |       |       |
+                  .114 (Int 1) | .118 (Int 3)  | .122 (Int 2)
+                               |               |
+                 Link 1 (WAN)  | Link 2 (WAN)  | Link 3 (WAN)
+               192.168.1.112/30|192.168.1.116/30 192.168.1.120/30
+                               |               |
+                  .113 (WAN)   | .117 (WAN)    | .121 (WAN)
+                      +-----+-+     +-+-----+     +-+-----+
+                      |       |     |       |     |       |
+                      |  R1   |     |  R3   |     |  R2   |
+                      |       |     |       |     |       |
+                      +---+---+     +---+---+     +---+---+
+                  .1 (LAN)|     .78 (LAN)|            |.129 (LAN)
+                          |              |            |
+            Subnet 1 (LAN)| Site 3 (LAN) |            | Subnet 3 (LAN)
+            192.168.1.0/26|192.168.1.64/28            | 192.168.1.128/26
+                          |              |            |
+                      +---+---+      +---+---+    +---+---+
+                      |       |      |       |    |       |
+                      | Switch|      | Switch|    | Switch|
+                      |   1   |      |   3   |    |   2   |
+                 .61  +-+---+-+  .77 +-+---+-+ .189 +-+---+-+
+                        |   |          |   |          |   |
+                    +---+   +---+  +---+   +---+  +---+   +---+
+                    |           |  |           |  |           |
+                 +--+--+     +--+--+--+--+   +--+--+--+--+   +--+--+
+                 |PC A |     |DHCP |PC C |   |PC D |PC B |   |DHCP |
+                 +-----+     |Srv 1+-----+   +-----+-----+   |Srv 2|
+                (DHCP: .2)     .60(Static: .65) (.66) (DHCP: .130).188
+    For Step 5:
+        1. The PC Configuration (DNS is Mandatory)
+        As we discussed earlier, computers do not understand domain names. If PC C opens a browser and types facebook.com, the very first thing it does is try to translate that name into an IP address using a DNS server.
+
+        Because the instructions for Site 3 said to manually configure all devices, you do not have a DHCP server handing out this information. You must go to PC C's IPv4 configuration screen and type it in yourself:
+
+        IP Address: 192.168.1.65
+
+        Subnet Mask: 255.255.255.240 (The /28 mask)
+
+        Default Gateway: 192.168.1.78 (R3's LAN IP)
+
+        DNS Server: 8.8.8.8 (Or whatever DNS server IP your lab environment dictates)
+
+        If you skip the DNS server entry, the ping to an IP address might work, but typing the URL in the browser will fail instantly.
+
+        2. The PC Configuration (DNS is Mandatory)
+        As we discussed earlier, computers do not understand domain names. If PC C opens a browser and types facebook.com, the very first thing it does is try to translate that name into an IP address using a DNS server.
+
+        Because the instructions for Site 3 said to manually configure all devices, you do not have a DHCP server handing out this information. You must go to PC C's IPv4 configuration screen and type it in yourself:
+
+        IP Address: 192.168.1.65
+
+        Subnet Mask: 255.255.255.240 (The /28 mask)
+
+        Default Gateway: 192.168.1.78 (R3's LAN IP)
+
+        DNS Server: 8.8.8.8 (Or whatever DNS server IP your lab environment dictates)
+
+        If you skip the DNS server entry, the ping to an IP address might work, but typing the URL in the browser will fail instantly.
+    
+        3. Static Return Routes (Getting Traffic BACK)
+        This is the step that trips up almost every CCNA student!
+
+        Let's assume the packet successfully reached Facebook, and Facebook is sending the webpage back to PC C (192.168.1.65). The packet arrives at the Internet Router.
+
+        The Internet Router looks at the destination IP (192.168.1.65). It checks its routing table. The Internet Router only knows about the three /30 serial links it is directly connected to. It has no idea that the 192.168.1.64/28 LAN exists behind R3. Because it doesn't know where to send it, the Internet Router drops the packet, and the connection times out.
+
+        You must teach the Internet Router how to reach your internal LANs using Static Routes.
+
+        On the Internet Router:
+        
+        4. Network Address Translation (NAT)
+        In a simulated lab environment (like basic Packet Tracer exercises), Step 3 is usually enough to make the ping succeed.
+
+        However, in the real world (and in advanced CCNA labs), the ISP will completely ignore those private 192.168.1.x addresses. You would need to configure NAT Overload (PAT) on R1, R2, and R3 to translate the private LAN IPs into their public serial interface IPs before the traffic hits the Internet Router.
+
+        If your lab instructions specifically mentioned configuring NAT earlier, that must be active. If not, the routing setup in Step 2 and Step 3 is exactly what your instructor is looking for.
