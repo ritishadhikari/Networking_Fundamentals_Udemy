@@ -1,0 +1,4 @@
+Two devices having IP addresses : 10.1.1.1 and 10.1.2.1 will not be in the same IP addresses if their subnet mask is 255.255.255.0 because the first 24 bits for both the devices does not match up. 
+
+But if their Subnet Mask is 255.255.0.0, then we see that the first 16 bits matches each other, and hence the two devices will be in the same subnet mask.
+
