@@ -50,7 +50,7 @@ Quick Method:
         172.16.35.123/20 or 172.16.35.123 255.255.240.0
         * where is the subnet mask ne 255 
         * take note for the octet   (3rd Octet)
-        * Subtract the mask value that is not 255 from 256  (256-240=16)    This tells us that here networks are incrementing in the values of 16
+        * Subtract the mask value that is not 255 from 256  (256-240=16). This tells us that here networks are incrementing in the values of 16
         * Work out where the octet from the IP, start at zero and and go until you past the value in the earlier step       (35 lies between 32 and 48)
         * Subnet lies in the lower value from the earlier question      (hence subnet is 172.16.32.0)
         * Broadcast Address is Next Network - 1     (hence 172.16.47.255)   (*next network was 48 and not 32)
