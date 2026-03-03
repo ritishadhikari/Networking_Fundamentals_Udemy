@@ -1,0 +1,14 @@
+When a Hub is connected, we see that even after learning the mac address, in the follow up pings, the hub transmits the information to the other devices in the network. Hence in short, a hub does not preserve the mac address in the network and hence traffic is flooded.
+
+A hub is a single broadcast domain as well a single collision domain. 
+
+Single Broadcast domain means that if more than one device broadcasts a message in the network through the hub, then the hub would receive the requests all at the same time and it drop all the packets.
+
+Single Collision domain means that if more than one device sends a message to the same device in the same network, then the hub would receive multiple message at the same time, and hence it would drop the packets.
+
+The switch, unlike a Hub, has caching mechanism and hence it does not go into a collision mode should there be two or more packets sent to the same device from two or more devices and hence ensures packets are received back one after another.
+
+While a hub has a single collision domain, switches have collision domain per interface
+
+
+
