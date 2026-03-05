@@ -1,0 +1,5 @@
+A loopback interface is virtual and never goes down. 
+
+In OSPF (for the internal network), every router needs a unique name so that all the other routers know who is sending them map updates. This name is called the Router ID (RID), and the network engineers will create a loopback interface and assign it an IP address specifically to be the Router ID. Because the Loopback never goes down, hence the Router ID never changes
+
+In BGP (External), Instead of using physical cables to peer, the engineers tell router A and router B to establish their BGP TCP connection using their Loopback IP Addresses. As long as the routers know how to reach other's loopback addreses (via OSPF), the BGP session stays up. The BGP TCP connection never breaks because the loopback IPs on both ends are still up.

@@ -1,0 +1,3 @@
+If we send large packets over the network, we may face duplex collisions
+
+A duplex mismatch happens when the device on one end of the cable is operating in Full-Duplex, and the device on the other end is operating in half-duplex. This usually occurs when someone manually forces one side to full-duplex but leaves the other side on auto-negotiate. The "Auto" side fails to see the negotiation signals from the manual side, assumes the worst-case scenario to be safe, and defaults to half-duplex
