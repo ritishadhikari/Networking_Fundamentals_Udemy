@@ -1,0 +1,84 @@
+Comparision:
+    - If we send packets through IP from one device to another, then there is no guarantee that packets reach the destination in the same sequence through which it was sent
+    - Need to ensure reordering of packets
+    - TCP/UDP are part of the layer 4, i.e., the transport layer
+    - UDP is connectionless like IP and does not guarantee the delivery of packets
+    - UDP is simple and scalable but is unreliable
+    - TCP provides delivery acknowledgement and reliability and is connetion oriented
+    - Origin to Destination, Call Initiated -> Destination responds to Source -> Source Responds to the destination
+    - In TCP : Initiate Call, Acknowledge Call, Indicate Speaking and then communication is established
+    - Socket is a combination of IP address of a host and the port number which is used and the trasport protocol which is being used : TCP/UDP
+    - TCP/UDP allows session multiplexing, which is a scenario when a single host with single IP address is able to communicate with multiple server or multiple sessions and have multiple sessions simultaneously
+    - A session is created when a source host is created when a source host needs to send information or data to the destination host
+    - The sessions are created and controlled with the network application which contains the functionality of OSI layer 5 through 7.
+    - Information may be segmented or chunked for the transmission across a physical medium
+    - Maximum Segment Size (MSS) is the largest amount of data in bytes that TCP is willing to send in a single segment and should be small enough
+    - TCP support Maximum Segment Size and Maximum Transmission Unit discovery
+    - MSS (actual data) is only a transport 4 layer phenomenon while MTU is considered for all the layers and are considered in bytes
+    - MSS = MTU - (IP Header + TCP Header)
+    - Flow control is a phenomenon in TCP to avoid sending data too quickly since if sender sends data faster than receiver can handle, receiver drops the data and require retransmission
+    - TCP have sliding window to control the flow of data. Windowing allows the recieving computers on how much data it is able to receive before transmitting an acknowledgement to the sending computer
+    - UDP does not implement flow control unlike TCP and it relies on higher layer protocols to implement flow controls
+    - UDP has no data recovery protocol and relies on higher order protocol. UDP headers : UDP has 16 Bit Source Port, 16 Bit Destination Port,  16 bits UDP length field, that specifies the length in bytes of the entire datagram which includes the header and the data. Maximum Size is 65535 bytes. 16 Bytes UDP Checksum is also present for the error checking.
+    - TCP 
+        - is a full duplex mode opertions - both host and transmit and receive at the same time
+        - error checking due to check sum in the datagram to verify there is no corruption
+        - sequencing of data packets 
+        - Acknowledgement of receipt
+        - availaibility of data recovery features
+        - TCP Segments are ent via IP Packets
+        - There is a 16 bit source port number
+        - There is a 16 bit destination port number
+        - There is a 32 bit sequence number
+        - If SYN is set, actual sequence number plus 1
+        - If SYN is not set, sequence number is the accumulated sequence number
+        - If ACK is set, ack number value is equal to next number that receiver is expecting to receive
+        - Minimum size of the header is 5 words (20 bytes) and the maximum size is 15 words (60 bytes)
+        - Various Flags in TCP :
+            - Congestion Window Reduced (CWR): Part of a congestion notification mechanisms used with ECE
+            - Echo Congestion Notification (ECE) Field or Flag used with Congestion Notification
+            - Urgent Flag (URG) indicate segment is urgent
+            - Acknowledgement (ACK) flag used for acknowledgement of data
+            - Push (PSH) is a flag used by the TCP sender to cause the TCP receiver to immediately Pause that sender's data to the receivers application
+            - Reset (RST) resets the connection and in other words, the connection is torn down
+            - Synchronize Sequence Numbers (SYN) and only the first packet sent from each end, will have this flags set
+            - Finish (FIN) means there is no more data from the sender
+        - Window Size is 16 bits in length and signifis the received window which means the number of bits the receiver is currently willing to receive
+        - Includes 16 bits error checksum which is used to check the errors on the header and the footer
+        - The 16 Bit Urgent Pointer is used with the urgent flag when set on and indicates
+        - Data are the data from the higher layer protocol, encapsulated with the TCP header
+        - Higher Layer Protocol which uses TCP includes:
+            - File Transfer:
+                - FTP, TFTP, NFS
+            - Email:
+                - SMTP
+            - Remote Login:
+                - Telnet
+                - SSH
+            - Network Management
+                - Simple Network Management Protocol
+            - Name Management
+                - Domain Name System
+        
+        Port Numbers:
+    - 
+
+
+
+UDP:
+
+
+
+TCP:
+
+
+
+TCP 3 Way Handshake:
+
+
+
+Windowing:
+
+
+
+Sequence Numbers:
