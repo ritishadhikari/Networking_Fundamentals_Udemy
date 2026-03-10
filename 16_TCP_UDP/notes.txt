@@ -119,5 +119,3 @@ Windowing:
     - Congestion Window (CWND) is initially set to a very low value and then increases at an exponential rate
     - For every lost segment, the CWND is halved and through the Congestion Avoidance algorithm, it fixes the optimal window sizes
     - With sliding window, there is a dynamic negotiation of window size and that the window size may change dramatically during a session depending on what the receiver can process and what the network can handle
-
-Sequence Numbers:
