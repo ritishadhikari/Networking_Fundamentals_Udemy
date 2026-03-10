@@ -61,7 +61,30 @@ Comparision:
                 - Domain Name System
         
         Port Numbers:
-    - 
+            - A random port is chosen as the source, while a well known port number is used as the destination
+            - It is the responsibility of the transport layer protocol (TCP/UDP) to locate the origin and the destination of the port number and thereby route the outgoing or the incoming traffic
+            - Port Numbers bind layer 4 till layer 7, thereby allowing applications to communicate
+            - Well known port numbers are <=1023
+                - (HTTP, 80, TCP)
+                - (FTP, 21, TCP) # for server and client negotiation
+                - (FTP data, 20, TCP)
+                - (Telnet, 23, TCP)
+                - (DNS, 53, TCP/UDP)  # TCP is used when the response data exceeds 512 bytes
+                - (TFTP, 69, UDP)
+                - (SNMP, 161, UDP )
+            - Registered Phone numbers are betweem 1024 and 49151
+            - The Dynamic and/or Private Ports are those from 49152 through 65535       
+            - Check out the link : https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml for the port numbers
+            - Ephemeral port numbers :
+                - These are short lived port used for client side of connection
+                - Temporary and only last for the duration of the session
+                - These varies based on the vendor implementations
+                - IANA suggests between 49152 - 65535
+                - BSD uses ports between 1024 - 4999
+                - Linux uses ports between 32768 - 61000
+                - Windows uses ports between 1025 - 5000
+            - 
+            - 
 
 
 
@@ -74,11 +97,27 @@ TCP:
 
 
 TCP 3 Way Handshake:
-
-
+    - Users of TCP must establish a connection oriented session with a peer System
+    - Host A initiating the session will set the SYN Flag in the TCP header of the initial segment while sending to Host B (Step 1)
+    - Host A also chose an initial SYN number of SEQ=100 (example is 100)
+    - This is used to start the handshake process
+    - The synchronization process also specifies the number of port, the sender wants to connect
+    - Once SYN is recieved and accepted, HOST B sends SYN and ACK (101) flag set (Step 2)
+    - Host B also sets an initial sequence number of SEQ=300 (ex. is 300) to indicate the next byte of data it expects to acknowledge
+    - Once SYN has has been received back by the HOST A, it signifies that the session has been established and the CTL field has been set to ACK and the the ACK field set to 301
+    - SEQ number has now been set to 101. Then the SYN flag is unset and it signifies that the 3 way handshake has completed successfully
+    - Note Initial sequence number can differ and ACK indicates next sequence number that hosts expects to receive
+    - Flow control prevents the issue of a sender overflowing the buffers of a receiver and is governed by the READY and NON READY flag
 
 Windowing:
-
-
+    - Window size is the number of data segments the sender is allowed to send before getting any acknowledgement from the receiver
+    - With Window size of 1 (low window size), the sender cannot send the data until it gets the acknowledgement from the receiver
+    - TCP allows for greater window sizes, i.e., more segments to be transmitted before receiving an acknowledgement
+    - Choosing a greater window size can improve the throughput dramatically
+    - Rather than using fixed windows, host tends to use sliding windows - where host initially starts with a small window size, while exponentially increasing the window size to guage the amount of data the receiver can receive and what the network can 
+    - When a packet is dropped by the network, then the host will slow down
+    - Congestion Window (CWND) is initially set to a very low value and then increases at an exponential rate
+    - For every lost segment, the CWND is halved and through the Congestion Avoidance algorithm, it fixes the optimal window sizes
+    - With sliding window, there is a dynamic negotiation of window size and that the window size may change dramatically during a session depending on what the receiver can process and what the network can handle
 
 Sequence Numbers:
