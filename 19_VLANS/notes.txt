@@ -1,0 +1,12 @@
+A VLAN 
+    - is a logical subnet or a logical network
+    - it is a group of hosts with a common set of requirements attached to the same broadcast domain regardless of where they are physically located
+    - it is a tool that we use to change the logical topology of a network without having to change the physical topology
+    - 
+
+The only way to traverse through VLAN devices are through the routers (level 3 devices)
+
+Trunk Port is an interface will run a trunking protocol so that VLAN information can be transmitted from one switch to another. The industry standard is 802.IQ while ISL was previously used.
+
+Physical Topology and Logical Topology:
+    - 

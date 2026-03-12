@@ -4,5 +4,3 @@ Types of Layer 2 Frames:
     - ATM : Asynchronous Transfer Mode
 
 SPAN stands for Switched Port Analyzer. It is a method used on network switches to send a copy of network packets seen on one or more switch ports (the "Source") to a dedicated connection (the "Destination") where a monitoring device is waiting. It is also generally known as Port Mirroring.
-
-
