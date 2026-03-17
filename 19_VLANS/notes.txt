@@ -8,5 +8,20 @@ The only way to traverse through VLAN devices are through the routers (level 3 d
 
 Trunk Port is an interface will run a trunking protocol so that VLAN information can be transmitted from one switch to another. The industry standard is 802.IQ while ISL was previously used.
 
-Physical Topology and Logical Topology:
-    - 
+VTP (VLAN Trunking Protocol):
+    - Layer 2 protocol
+    - No connection with routers
+    -  Three Modes
+        - Server
+        - Client
+        - Transparent
+    - VTP Domain:
+        - Consists of one or more interconnected switches that share the same VTP domain name
+        - Switches will only share VLAN information with other switches in the exact same information 
+        - A switch can only belong to one VTP domain at a time
+    - VTP Advertisements:
+        - They are multicast frames over trunk line which switches use to share their VLAN database with their neighbor
+    - Configuration Revision Number (CRN):
+        - It is a 32 bit number that tracks the version of the VLAN database.
+        - Everytime a change is made, the revision number increases by 1
+    - Not recommended
