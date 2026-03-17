@@ -1,0 +1,6 @@
+- Cisco proprietory protocol
+- They can automatically negotiate trunking with the neighbouring switches
+- Through DTP, switches can form trunks and permit VLANs across that trunk automatically
+- Dynamic Desirable Protocol is a protocol in which the switch initiates trunking with the
+remote end
+- Dynamic Auto Protocol is a protocol in which the switch does not initiate the trunking if the other side initiate 
