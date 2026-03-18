@@ -1,0 +1,50 @@
+- The primary purpose of a Spanning tree is to stop loops in a switch environments
+- It was originally developed for bridges (software) and not switches (hardware)
+
+
+- Types of Spanning Tree: 
+    - IEEE 802.1ID :
+        - The legacy standard of Spanning Tree
+        - Started when Bridges were around
+    - CST :
+        - Assumes that there is one Spanning Tree Instance for the entire bridged network
+    - PVST :
+        - Only supported ISL
+    - PVST* :
+        - Supports ISL and 802.1Q
+        - Cisco enhancement of Spanning Tree that provides a separate 802.1D Spanning Tree Instance
+    - 802.1S:
+        - Two spanning tree instance 
+        - First instance: 1-100 (ex.)
+        - Second Instance: 101-200 (ex.)
+    - RSTP: 
+        - Improves convergence over the 1998 version of Spanning Tree
+            - Roles to ports
+            - Enhancing BPDUs exchanges
+        - Much quicker convergence
+        - Only supports a single instance of Spanning Tree
+    - Rapid PVST+
+        - One Spanning tree per VLAN, but have rapid convergence
+        - Can handle upto 10 VLANs really well
+
+
+- MSTP is a process of mapping Multiple VLANs to the same Spanning Tree Instance
+
+Requirements for a Spanning Tree:
+    - There will be a lot of Mac Address Instability in the Mac Address Table if we are using multiple links to connect two switches (for the purpose of reliability)
+
+BPDUs:  
+    - Sent by default every 2 seconds
+    - Contains lots of Information about the spanning tree
+        - Bridge ID:
+            - 8 Byte Value unique to the switch
+            - 2 Byte Priority field
+            - 6 Byte system ID
+            - This is unique 
+    - Types of BPDUs:
+        - Configuration BPDU:
+            - Used by Spanning Tree to provide information to switches
+        - Topology change BPDU:
+            - To tell switches of a change
+        - Acknowledgement BPDU:
+            - Used to confirm the receipt of a topology change in a notification
