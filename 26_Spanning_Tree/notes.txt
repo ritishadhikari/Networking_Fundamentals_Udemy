@@ -48,3 +48,40 @@ BPDUs:
             - To tell switches of a change
         - Acknowledgement BPDU:
             - Used to confirm the receipt of a topology change in a notification
+
+- Selection of Root Ports and Designated Ports:
+    - Spanning Tree protocol follows a heirarchy of selection: 
+        - Root Bridge:
+            - Switch with the lowest Bridge ID (BID)
+            - It is a combination of a configurable priority value and the switch's MAC address
+            - Once root bridge is elected, all of its ports becomes designated ports
+        - Root Port:
+            - Every non-root switch must choose exactly one root port. 
+            - This is the port that provides the lowest cost path back to the root bridge
+            - Tie Breakers (Selection):
+                - 1. Lowest Cost path
+                - 2. Lowest Neighbor Bridge ID
+                - 3. Lowest Neighbor Port Priority
+                - 4. Lowest Neighbor Port ID
+        - Designated Ports
+            - Part of the Root Bridge
+            - On every network segment, One port must be elected as the designated port
+            - This is the port responsible for forwarding traffic from that segment toward the root bridge
+            - Tie Breakers (Selection):
+                - Lowest Root Path Cost
+                - Lowest Bridge ID (BID)
+                - Lowest Port ID
+
+
+- PVST + Extended Bridge ID:
+    - Creates an instance on a per VLAN basis and the Vendor would need to assign a MAC address on a per VLAN basis
+    - Hence different MAC address would have to be allocated for every VLAN
+    - Not recommended if there are 100s of VLANs
+    - Bridge Priority (set manually) is now 4 bits, Extended System ID (VLAN) is now 12 bits (total 2 Bytes) and MAC address is now 6 Bytes and in total is 8 Bytes
+
+- Portfast Port:
+    - It is a configuration which is applied to a switch port that allows it to bypass the standard STP listening and learning states and move immediately to the forwarding state
+    - It is only setup for edge devices like workstations, printers, servers, IP cameras
+    - Not to be enabled with a switch, bridge or hub since it carries the risk of an instantaneous switching loop, which can bring down the entire network before STP even realizes what happened
+    - Hence Port Fast is the standard best practice for the access layer and ensures a seamless user experience.
+    - BPDU guard is also enabled as a standard practice, such that switches are not configured as a Portfast Port by mistake
