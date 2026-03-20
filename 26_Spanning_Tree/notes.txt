@@ -85,3 +85,30 @@ BPDUs:
     - Not to be enabled with a switch, bridge or hub since it carries the risk of an instantaneous switching loop, which can bring down the entire network before STP even realizes what happened
     - Hence Port Fast is the standard best practice for the access layer and ensures a seamless user experience.
     - BPDU guard is also enabled as a standard practice, such that switches are not configured as a Portfast Port by mistake
+
+- Blocking Ports:
+    - Forward Data Frames : No
+    - Learns MACs Based on received Frames : No
+    - Transitory or Stable State : Stable
+
+- Listening Ports:
+    - Forward Data Frames : No
+    - Learns MACs Based on received Frames : No
+    - Transitory or Stable State : Transitory
+
+- Learning Ports:
+    - Forward Data Frames : No
+    - Learns MACs Based on received Frames : Yes
+    - Transitory or Stable State : Transitory
+
+- Forwarding Ports:
+    - Forward Data Frames : Yes
+    - Learns MACs Based on received Frames : Yes
+    - Transitory or Stable State : Stable
+
+- Forwarding Ports:
+    - Forward Data Frames : No
+    - Learns MACs Based on received Frames : No
+    - Transitory or Stable State : Stable
+
+- Rapid Spanning Tree converges much faster than a Spanning Tree
