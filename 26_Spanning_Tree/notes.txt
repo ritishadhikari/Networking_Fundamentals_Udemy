@@ -112,3 +112,30 @@ BPDUs:
     - Transitory or Stable State : Stable
 
 - Rapid Spanning Tree converges much faster than a Spanning Tree
+
+Types of Spanning Trees:
+    - STP:
+        - Standards: 802.1D
+        - Resource Needed: Low
+        - Convergence: Slow
+        - Number of Trees: One
+    - PVST+:
+        - Standards: Cisco
+        - Resource Needed: High
+        - Convergence: Slow
+        - Number of Trees: One for every VLAN
+    - RSTP:
+        - Standards: 802.1w
+        - Resource Needed: Medium
+        - Convergence: Fast
+        - Number of Trees: One
+    - Rapid PVST+:
+        - Standards: Cisco
+        - Resource Needed: Very High
+        - Convergence: Fast
+        - Number of Trees: One for every VLAN
+    - MSTP:
+        - Standards: 802.1s, Cisco
+        - Resource Needed: Medium or High
+        - Convergence: Fast
+        - Number of Trees: One for every Multiple VLANs
