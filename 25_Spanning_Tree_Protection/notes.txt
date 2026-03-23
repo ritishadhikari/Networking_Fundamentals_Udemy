@@ -1,0 +1,6 @@
+Root Guard:
+    - Protects against unauthorized switches attempting to become the root bridge 
+    - Protects against the hackers sending BPDUs
+    - Blocks access until receipt of superior BPDUs stops
+
+
