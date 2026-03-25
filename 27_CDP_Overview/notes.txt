@@ -1,0 +1,16 @@
+Cisco Discovery Protocol (CDP):
+    - It's a great way to discover on how devices are connected
+    - They are neighbour discovery protocol and helps network devices (routers, switches and firewalls) introduce
+    - It shows directly connected neighbours (only layer 2 devices)
+    - Because of CDP message, every device in a network knows exactly who its immediate neighbors are, what kind of devices they are and which specific 'port' (cable connection) links them togather
+    - If a network engineer needs to figure out how everything is connected, they don't have to trace the physical cables. They can just log into one switch, look at its LLDP/CDP data and instantly see what is plugged into every single port
+
+
+
+Linked Layer Discovery Protocol (LLDP):
+    - Unlike in CDP, this is universal, open standard intercom. It does not matter if one device is made by Juniper, another HP and another by Cisco. 
+    - LLDP allows all of them to share their 'name tags' with each other   
+
+Both the protocols operate strictly at "Layer 2" of the network and don't route traffic across the internet and just talk to the device physically sitting on the other end of the wire.
+
+
