@@ -1,0 +1,55 @@
+Routed Vs Routing Protocols:
+    - Routed Protocols:
+        - Ex: IPV4, IPV6
+        - Carries user information
+        - Each router making independent decision in determining path
+        - The routing decisions made by routers is known as hop by hop routing paradigm with unicast traffic
+        - Work of one routed protocol (Ex. IPV4) is totally independent and separate from another routed protocol (Ex. IPV6)
+        - Routed Protocol uses different Routing Protocols
+            - OSPF V2 uses IPV4
+            - OSPF V3 uses IPV6
+
+    - Routing Protocols:
+        - EIGRP, OSPF, RIP, ISIS, BGP, etc
+        - Communicates information about networks 
+        - Determines the best route between networks
+
+Static Vs Dymanic Protocols:
+    - Static Routes:
+        - Administrators manually enters route
+        - No Overheads in the network and less bandwidths
+        - Involves a lot of manual work
+        - Does not scale when network becomes large
+        - Ex. Home Routers always provides the traffic to the service provider
+    - Dynamic Routes:   
+        - Uses a routing protocol
+        - Automatically adjusts based on topology changes or traffic changes
+        - Router automatically learn about any new network
+        - Exchanges network information with each other
+        - Learn and maintain routes by exchanging routing updates
+        - Low overheads on system or network Administrators and can be enabled with few commands
+        -
+Static: Admins Decides
+RIP: Hop Count
+OSPF: Bandwidth
+EIGRP: Bandwidth + delay
+
+AS (Autonomous Systems):
+    - Routers in an Autonomous system are under a group of people or company
+    - Within an AS, no need to register or apply for an AS number
+    - When communicating onto the internet, apply for an AS number
+IGPS (Interior Gateway Routing Protocols)
+    - Use RIP, EIGRP, OSPF
+    - Used within Autonomous Systems
+
+EGPS (Exterior Gateway Routing Protocol):
+    - Use BGP (Border Gateway Protocol)
+    - Used within Autonomous Systems
+
+
+
+Distance Vector Routing Protocols:
+    -
+
+Link State Routing Protocols:
+    - 
