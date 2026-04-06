@@ -46,10 +46,70 @@ EGPS (Exterior Gateway Routing Protocol):
     - Use BGP (Border Gateway Protocol)
     - Used within Autonomous Systems
 
-
-
 Distance Vector Routing Protocols:
-    -
+    - Routers advertise routes as a vector of  distance and direction
+    - Direction signifies next hop address while Distance signifies the Hop Count
+    - Easy to configure but very limited visibility
+    - Uses the Bellman Ford Algorithm
+    - The router only knows the direction or the vector, where to send the packet
 
 Link State Routing Protocols:
-    - 
+    - This protocol has a complete map of the area (full view of network topology)
+    - Can make a much more informed decision about how to get to the destination networks
+    - Each router originates information about itself, its directly connected links and the state of those links
+    - Ex. OSPF, IS-IS
+    - Each router can make calculated decisions on how to take on the best path
+    - Uses an algorithm called Shortest Path First (SPF)
+    - More difficult to configure and requires more memory for remembering the routes
+    - Consumes more power
+
+Advanced Distance Vectors:
+    - Takes the best of both the distance vector and Linked State routing protocol and combines that to a single routing protocol
+    - In theory it is the best of both combined into a single routing protocol and gives you the power of Link state with the ease of distance vector
+    - Ex. EIGRP
+    - EIGRP is Cisco Prorietory
+
+Administrative Distance:
+    - Signals and a Tie Breaker on which route to take when different routing protocol suggests different ways
+    - The lower the administrative distance, the more believable the routing protocol is
+    - Different Administrative Distance:
+        - Connected Route: 0
+        - Static Route: 1
+        - Internal EIGRP: 90
+        - OSPF: 110
+        - RIP: 120
+        - Unknown: 255
+        - IBGP: 200
+        - EBGP: 20
+        - ISIS: 115
+
+Classful Routing Protocol:
+    - Does not adevertise subnet mask
+    - Ex: 10.0.0.0
+    - Consistency of Subnet Mask is assumed
+    - Not used these days
+    - Ex: RIP V1 and IGRP (replaced now by EIGRP)
+
+Auto Summarization:
+    - Routing protocols that use auto-summarization look at the major network boundary
+    - Longest match takes precedence over administrative distance (the one with the longest subnet mask)
+
+Classless Routing Protocol:
+    - Do advertise subnet masks
+    - Routers can hence see what the network masks is and do not have to assume what network mask is
+    - Ex. 10.0.0.0/24 or 10.0.0.0/30
+    - Support Variable Length Subnet masks
+    - Ex: OSPF, EIGRP, RIP V2, IS-IS
+
+
+OSPF:
+    - It uses a two-tier hierarchical structure to keep routing tables manageable and prevent a single link failure from causing the entire network to go into a recalculation frenzy
+    - Backbone Area (Area 0) :
+        - This is the core of the OSPF network. 
+        - All other areas must connect to area 0. 
+        - Traffic moving between any two non-backbone areas (area 2 to area 1) must pass through the backbone
+    - Non Backbone Areas (Areas 1, 2, 3):
+        - These are used to group local routers
+        - They help contain "Link State Advertisements" (LSAs) within a specific region so that routers in Area 3
+        don't need to know every tiny detail about the internal topology of area 1
+        
