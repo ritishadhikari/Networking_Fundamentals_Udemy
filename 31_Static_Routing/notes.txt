@@ -1,0 +1,15 @@
+Routing Table:
+    - List of networks that the router knows about
+    - Information about how to reach those networks
+    - Directly Connected Networks:
+        - They are connected directly to one of the interfaces on the local router
+        - These are added to the routing table automatically
+        - If interface is down, then it is removed from the routing table
+    - Static Routes:
+        - Manually added to the configuration of the router
+        - Very good for small simple networks
+        - Do not dynamically adjust to changes in the network topology
+    - Default Route:
+        - This is an optional route used when no explicit path to a destination is found in the routing table
+        - 
+
