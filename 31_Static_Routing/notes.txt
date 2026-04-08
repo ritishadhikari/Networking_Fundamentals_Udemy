@@ -11,5 +11,3 @@ Routing Table:
         - Do not dynamically adjust to changes in the network topology
     - Default Route:
         - This is an optional route used when no explicit path to a destination is found in the routing table
-        - 
-
