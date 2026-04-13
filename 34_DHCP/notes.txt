@@ -1,0 +1,38 @@
+There are four messages with respect to a DHCP exchange between a client and a pc:
+    - Discover
+    - Offer
+    - Request
+    - Acknowledgement
+
+{
+  "dhcp_dora_process": [
+    {
+      "step": "D",
+      "message": "Discover",
+      "sent_by": "Client",
+      "network_target": "Broadcast",
+      "action": "Is there a server out there?"
+    },
+    {
+      "step": "O",
+      "message": "Offer",
+      "sent_by": "Server",
+      "network_target": "Broadcast/Unicast",
+      "action": "I have an address for you."
+    },
+    {
+      "step": "R",
+      "message": "Request",
+      "sent_by": "Client",
+      "network_target": "Broadcast",
+      "action": "I'll take that address, please."
+    },
+    {
+      "step": "A",
+      "message": "Acknowledgement",
+      "sent_by": "Server",
+      "network_target": "Broadcast/Unicast",
+      "action": "Confirmed. You're all set."
+    }
+  ]
+}
