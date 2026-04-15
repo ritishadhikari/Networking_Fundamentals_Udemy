@@ -36,3 +36,6 @@ There are four messages with respect to a DHCP exchange between a client and a p
     }
   ]
 }
+
+Make sure in the DHCP server IP addresses for the specific network are either excluded or included. If IP addresses are excluded, then those addresses cannot be assigned to the client by the DHCP server.
+
