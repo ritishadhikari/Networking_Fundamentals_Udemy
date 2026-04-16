@@ -1,0 +1,7 @@
+DNS :
+    Resolves a domain name to a IP Address
+
+If a local DNS server does not know the address, then it forwards the query to a more authoratative DNS server
+
+We can manipulate the fully qualified domain name by internally pointing to the FQDN with a different IP address and in that case if we ping that FQDN later, than we would be routed to the incorrect IP addresses and our essential information may be hacked. 
+
