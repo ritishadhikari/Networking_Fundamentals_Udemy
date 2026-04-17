@@ -1,0 +1,40 @@
+Variable Length Subnet Mask:
+    - Masks can vary on arbitary lengths
+    - Allows for different subnets
+
+Route Summarization:
+    - This is a method used in networking to minimize the number of routing table entries by representing multiple specific network addresses with a single, broader address.
+    - Ex. Allocating different networks - 10.1.1.0/24 and 10.1.200.0/24 and summarizing into one, i.e., 10.1.0.0/16
+    - By doing this, only one route needs to be advertised across the WAN link in each direction, rather than multiple specific routes
+    - If 10.1.1.0/24 fails, the summary route 10.1.0.0/16 stays in the table (as long as 10.1.200.0/24 is still up). The rest of the network never even knows there was a failure, preventing unnecessary updates and recalculations.
+    - Because the routing updates are smaller, and there are fewer changes to process when a link goes down, the network reaches a stable state (convergence) much faster.
+
+
+    172.16.001 00000.00000000
+    172.16.001 11111.00000000
+    172.16.32.0/19  
+
+    172.16.01 000000.00000000
+    172.16.01 111111.00000000
+    172.16.64.0/18
+
+Classful Routing:
+    - This protocol do not include the subnet mask with the network in routing advertisements
+    - Hence within the same network, consistency of the subnet mask is assumed (same subnet mask for entire network)
+    - Examples:
+        - RIPv1
+        - IGRP
+
+Classless Routing:
+    - Classless routing protocols do include the subnet mask with the network in routing advertisments
+    - Support VLSM
+    - Summary routes can be manually configured
+    - Examples:
+        - OSPF
+        - RIPv2
+        - EIGRP
+        - ISIS
+    - EIGRP & RIPv2 act as classful by default. So use the "no auto-summary" command to disable the default behavior
+    - 10.1.000000 01.00000000 
+      10.1.000000 10.00000000 
+      10.1.1.0/22
