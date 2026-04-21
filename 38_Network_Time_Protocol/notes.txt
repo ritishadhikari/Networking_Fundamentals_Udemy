@@ -1,0 +1,5 @@
+
+- It is used for clock synchronization between the routers 
+- The NTP server listens at port 123 with UDP and can be unicast, broadcast or multicast
+- Stratum describes the source of reference of the clock from where the current time on that device is derived from. Lesser the stratum number, the more accurate it is (the most accurate being the atomic clock with stratum value of 0)
+-
