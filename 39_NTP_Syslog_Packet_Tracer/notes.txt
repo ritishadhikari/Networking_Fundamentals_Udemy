@@ -1,0 +1,1 @@
+Syslog allows for centralizing Log Messages as well as store historical backups of various log messages
