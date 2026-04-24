@@ -1,0 +1,21 @@
+Cisco Router Components:
+    - Central Processing Units
+    - Serial Interfaces
+    - Fast Ethernet Interfaces
+    - Random Access Memory
+    - Flash Memory
+        - Non Volatile Computer Memory
+        - Permanent storage for the Operating System
+    - NMRAM
+        - Does not loose its information when the router is powered off
+    - Packet Buffers
+    - ARP Cache
+    - Configuration Register 
+
+Running Configuration File:
+    - It is that file which stores the configuration commands that the Cisco IOS software is currently using on the Router
+    - Stores in RAM
+
+Starting Config:
+    - It is that file which is used when the router boots and transfers it into the RAM as Running Config
+    - Stores in NV-RAM
