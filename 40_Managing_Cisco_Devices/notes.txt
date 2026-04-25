@@ -19,3 +19,8 @@ Running Configuration File:
 Starting Config:
     - It is that file which is used when the router boots and transfers it into the RAM as Running Config
     - Stores in NV-RAM
+
+Router Start:
+    - Perform Power on self Test
+    - Loaded and running the bootstrap code
+    - Find the Cisco IOS software (Normally located in Flash Memory)
