@@ -16,7 +16,6 @@ By disabling unneeded services, we
     - preserve resources in network devices
     - reduce attack area of network devices
 
-
 Services which are enabled by Cisco devices:
     - Cisco Discovery Protocol (CDP)
     - DHCP
