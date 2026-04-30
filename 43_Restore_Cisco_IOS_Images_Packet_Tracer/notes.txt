@@ -1,0 +1,27 @@
+The password is used to stop user from moving from user mode to enable mode without authentication.
+
+While configuring passwords in Cisco devices, if we are using the command - enable password in conf t mode and then if we are doing 'sh run' in the privilege mode, then the problem is this command will show the password back. This is not a good way to declare your password.
+
+Hence to enable encryption in passwords, Cisco suggests us we use the "service password-encryption" in the priviledged mode such that the password remains encrypted when we hit the 'sh run' in the privilege mode. But the problem can easily be decrypted through a hacking tool.
+
+The recommended method to enable a password in cisco devices is through enable secret. It makes sure that both enable password and enable secret are different from one another.
+
+The advantage of using enable secret is that it does not require a user to explicitly use the "service password-encryption" in the priviledged mode for hasing the secret. When we hit the 'sh run' in the privilege mode, the secret is shown but is hashed naturally.
+
+The secrets in cisco devices are hashed in MD5 format, while the passwords are hashed in a Type 7 format.
+
+Once a user tries to enter enable or priviledged mode from user mode, we can enter wrong passwords upto two times post which we will be reverted to the user mode. Similarly, we can make the password to be waited, and the router prompts three times (in a scheduled interval) for the password, post which there is a timeout and once again it will revert to the user mode.
+
+By disabling unneeded services, we 
+    - preserve resources in network devices
+    - reduce attack area of network devices
+
+
+Services which are enabled by Cisco devices:
+    - Cisco Discovery Protocol (CDP)
+    - DHCP
+    - DNS
+
+We can use the command: `show control-plane host open-ports` in the priviledged mode to check the existing open ports in a router. 
+
+If we want to disable a service, we need to use "no service <service-name>" -> 'no service udp-small-servers'
