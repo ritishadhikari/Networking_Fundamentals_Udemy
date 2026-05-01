@@ -24,3 +24,23 @@ Services which are enabled by Cisco devices:
 We can use the command: `show control-plane host open-ports` in the priviledged mode to check the existing open ports in a router. 
 
 If we want to disable a service, we need to use "no service <service-name>" -> 'no service udp-small-servers'
+
+
+
+Telnet Security:
+    - With Telnet, passwords are captured, which is not a good practice
+    - Hence SSH is recommended
+    - With the command "exec-timeout <timeout minutes>", we can make sure that the user gets disconnected from the devices he is either Tellnetted or SSH'd into
+
+SSH Security:
+    - With SSH, the client would required the public key from the host to connect
+    - All the messages including the id and the passwords are all encrypted
+
+Banner:
+    - Message of the day (MOTD):
+        - To display a temporary messages
+    - Login:
+        - Is shown before a user logs in
+    - Exec:
+        - Displays after Login
+        - To display information that only internal staffs should know
