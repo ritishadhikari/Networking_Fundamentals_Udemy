@@ -1,0 +1,106 @@
+Cisco Switch (Catalyst 2960-CG Series) switch connected to a windows 10 laptop through Ethernet swith on port 1 (in the switch). 
+
+A Macbook is connected to port 2 from the same switch.
+
+
+Console of the switch is also connected through an USB connection. 
+
+Both the devices is being controlled from the local Mac
+
+Windows computer is running Kali Linux inside OF the VMware workstation player
+
+Yersinia was downloaded in the Kali Linux running in the Windows machine
+
+Yarsinia GUI has many tabs: CDP, DHCP, 802.1Q, 802.1X, DTP, HSRP, ISL, MPLS, STP, VTP and Yersinia Log
+
+Start putty from the Kali Linux and connect to the Switch (verify the port of the PC which is being used)
+
+By default the switch has two dhcp pools which were configured (2 VLANS, with 2 different networks with default router and dns-server for connecting the Windows PC and the Macbook)
+
+The switch did not have the routing enabled (hence routing between VLANs) were disabled
+
+Macbook was initialized with IP address - 10.1.2.1/24 by the DHCP server
+
+Windows 10 PC was initialized with IP address - 10.1.1.1/24 by the DHCP server and was verified by using IPCONFIG command in the Windows computer itself
+
+As of now, when tried, the PC was not able to ping the Macbook since the routing was not enabled in the switch (discussed above)
+
+Originally the Kali Linux did not have an IP Address, so it was configured using NAT within the PC to have its own IP Address.
+
+<CDP Attack>
+The new IP Address of the Kali Linux running within the Windows PC is 10.1.1.3/24
+
+In the KALI GPU, the details of the switch became visible
+
+In the Switch, the 'sh cdp nei' did not display any CDP neighbours at the moment
+
+A attack was launched (flooding CDP table) from the KALI GUI on the Switch and now in the switch with the 'sh cdp nei' command showed a flood of logs in the console of the switch with the platform being Yersinia
+
+This leads to the CPU in the laptop shoot with a lot of compute usage and later the attack is stopped from the GUI of the KALI Linux
+
+</CDP Attack>
+
+<Spanning-Tree Attack>
+
+The command 'show spanning-tree' in the putty (switch) shows that the switch is the root for both VLAN 1 and VLAN 2.
+
+Now a Spanning-Tree attack is performed in the GUI of the KALI Linux by claiming root role (Yersinia)
+
+Now in the Switch, when we do 'sh spanning-tree' once again, we no longer see this switch to be the root for both the PC and the Mac (because Yarsinia has launched the spanning-tree attack) and the port is also mentioned as GI0/1 as the port which the switch must take to reach the root (which in this case is KALI Linux)
+
+</Spanning-Tree Attack>
+
+<DTP Attack>
+There are no trunk ports as of present in the switch - 'show int trunk' and interface g0/1 is configured with a default set-up
+
+
+From the Kali Linux GUI, under DTP, enable trunking was selected.
+
+Now in the Switch, trunking is enabled on Gi0/1 with encapsulation 802.1Q. This means Kali Linux will have visibility into the Macbook (connected to VLAN2) and will be able to send traffic into VLAN2
+
+The MacBook initiated a DHCP request to the switch in VLAN 2 and it was clearly visible from wireshark which is installed on Kali Linux installed on the Windows PC
+
+Also when the Macbook initiated a Broadcast and a Multicast Ping, both were visible in the Wireshark of Kali Linux through ARP and ICMP respectively
+
+</DTP Attack>
+
+
+<VTP Attack>
+
+Once typing 'sh vtp status' in the putty, it shows that the VTP domain name as home and the VTP operating mode is the server (for the switch)
+
+A new VLAN was created in the switch and in the Kali Linux a VTP packet was sent and it learnt about the home VTP domain for the switch 
+
+The Third Macbook through which the author is demonstraing live was also connected to the switch in port 3
+
+While doing sh int brief in the putty (switch), it showed that VLAN1, VLAN2 and Gi0/1, Gi02 and G0/3 was up. Gi0/3 was configured as an access port and was put to VLAN 2 through the command switchport access vlan 2
+
+The new Macbook (being used for demoing) was then configured for DHCP and was allotted IP address in VLAN 2
+
+It was shown that the two macbooks were able to ping one another.
+
+An attack was launched from the Yersinia in Kali Linux on 'deleting one vlan' and vlan2 was chosen
+
+The VLAN was now now available while accessing the switch through 'sh vlan brief' 
+
+The two mac would now not be able to connect with each other
+
+Once again VLAN2 was created from the switch and then the VLAN 2 was seen connected to gi0/2 and gi0/3 (seeing through sh vlan brief) and the ping once again started to succeed between the two macs
+
+A new VLAN 5 was created in the switch 
+
+Once again the process, of deleting VLAN 2, from the Kali Linux was repeated and the ping started to fail again between the two macs
+
+From the Kali Linux UI, under VTP, `deleting all VTP vlans` was selected and then  VLAN 10 was created in the Switch for the convergence
+
+When 'sh vlan brief' command was executed, it was noticed, none of the created VLANs - VLAN3, VLAN5, and VLAN10 existed anymore
+
+
+</VTP Attack>
+
+
+
+
+
+
+
