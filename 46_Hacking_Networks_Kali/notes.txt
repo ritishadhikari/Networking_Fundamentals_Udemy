@@ -98,7 +98,78 @@ When 'sh vlan brief' command was executed, it was noticed, none of the created V
 
 </VTP Attack>
 
+<DHCP Attack Exhaust Pool>
 
+Now with a different scenario. 
+
+New Scenario: 
+A switch is connected to Kali Linux (through port Gi0/0), and the same switch is connected to a Windows 10 Computer(through port Gi0/1). The switch is also connected (through port Gi0/2) to a router(through port Gi0/0) and the router (through port Gi0/1) is connected over the internet.
+
+The windows host is turned off as of now. 
+
+The router is originally assigned as a DHCP server and is provided with DHCP Pool. The subnet that was allocated to this router was 10.1.1.0/24. The IP address of the default router was set to 10.1.1.254 (for port Gi0/0) and set to 172.29.129.203(for port Gi0/1) and the DNS router is set to 8.8.8.8 (Google)
+
+In the router, the port Gi0/0 and port Gi0/1 was transferred from Down to Up (through No Shut)
+
+Ping of www.google.com was tried and found to be successful from the router.
+
+The Kali Linux was booted and the IP address was found to be 10.1.1.3 (by doing IPConfig)
+
+While trying to use 'sh ip dhcp binding' command, it showed it has connected with the Kali Linux with the defined IP address where the Mac address was also visible
+
+From the Kali Linuc, Yarsinia was resumed through the GUI mode. Once in the DHCP mode, Launch DHCP attack was opted. Then from there `sending DISCOVER packet` was opted which means a `DISCOVER Denial of Service` attack.
+
+Once performed, a lot of DHCP packet counts were observed in the Yarsinia GUI and from the router when again 'sh ip dhcp binding' was performed, it now showed whole new bunch of artificially created IP address (from the assigned Network following the Subnet protocol) and mac address configurations. 
+
+This signifies that KALI Linux has exhausted the DHCP pool in the cisco router (from 10.1.1.1 till 10.1.1.253) and subsequently there would be no IP address left in this pool.
+
+By checking with the command - 'sh ip dhcp pool', we get to see that 253 addresses has been leased for the given networks
+
+The Windows 10 machine (host) was booted and even it being connected to the switch via the router, no IP address was allotted to this host and was using the default IP address  - 169.254.54.1
+
+Even with 'ipconfig /renew' command, the Windows 10 host could not be allotted an IP address, since all the IP addresses were consumed after the attack from Yarsinia GUI in the KALI Linux
+
+</DHCP Attack Exhaust Pool>
+
+
+<DHCP Attack Allocate from Fake Subnet>
+
+With the above prevailing condition, again from the Yarsinia GUI, under DHCP a launch attack was triggered. This time `creating DHCP rogue server` executed. The server id (IP address of KALI Linux Server - 10.1.1.3), Start IP (10.1.1.100) and End IP (10.1.1.150) was allotted. Lease time and Renew time was set to 3600 seconds. Subnet Mask set to 255.255.255.0. 
+
+
+</DHCP Attack Allocate from Fake Subnet>
+
+
+<DHCP Attack Set Default Gateway to Kali Linux>
+With the above prevailing condition:
+The default router was set to be 10.1.1.3 (and not the actual router). The DNS server set as 8.8.8.8 and domain name as `home.com`. 
+
+Now on the windows machine, when typed with ipconfig, it is now allotted an IP address of 10.1.1.100 (which came from the launch attack mode) and the default gateway changed to the Kali Linux Host
+
+
+
+</DHCP Attack Set Default Gateway to Kali Linux>
+
+
+
+<DHCP Attack Man in the middle attack>
+
+The router by default was set to loopback at 1.1.1.1, but now pinging the same from the PC is returning failed message since it is now flowing to the Kali Linux instead of the Router, and Kali is not forwarding the messages
+
+So in Kali Linux we type - 'sysctl -W net.ipv4.ip_forward=1' for forwarding traffic sent to the Kali Linux. 
+
+Now pinging 1.1.1.1 from the Windows 10 host works perfectly since the Kali is forwarding the traffic to the router.
+
+Now from the windows PC Telnet to the router through 1.1.1.1 was performed via putty. When the password was applied for logging into R1, the password was captured in the Wireshark application hosted inside of Kali Linux
+
+From the PC, a web-browser was opened, and in the browser 1.1.1.1 was typed (using HTTP and not HTTPs) and was signed in to the router, and command were typed inside the routers UI - 'sh ip int brief'. 
+
+Back in Wireshark in Kali with the HTTP mode on, the transactions between the PC and the Router were captured
+
+
+Also opening some non-encrypted websites like ox.ac.uk, from the PC, the same was captured by Wireshark in Kali Linux
+
+</DHCP Attack Man in the middle attack>
 
 
 
