@@ -172,6 +172,39 @@ Also opening some non-encrypted websites like ox.ac.uk, from the PC, the same wa
 </DHCP Attack Man in the middle attack>
 
 
+<Poison Arp Caches in PCs>
 
+The windows pc has a IP address of 10.1.1.100 with default gateway as 10.1.1.254 which also happens to be the IP address of the router connected to Gi0/0 of the switch with a mac address of 5001.0009.0000. When we do 'arp -a' in the windows device, we see the windows pc has learnt about the mac address of the router.
+
+With 'ipconfig /all' in the pc, we see that the mac address is 50001.0006.0000 and the ip address as 10.1.1.100
+
+The wireshark was turned on the Windows Host and the arp cache was deleted from the windows through the command - 'arp -d' and it was seen ARP traffic was generated from the pc with the mac address 50001.0006.0000 broadcasted about the mac address with the default gateway having ip address  - 10.1.1.254.
+
+The router was seen to be reverting to the pc with its mac addres (sent as a unicase back to the pc)
+
+In the Switch by typing 'sh mac address-table', we see the mac addresses are populated for the pc and the router. The Kali Linux mac address has not been learnt
+
+In the Kali Linux, the mac address was observed to be 5001.0002.0000 and the Ip address was observed to be 10.1.1.156 and the ping was success from Kali to the router
+
+Now upon using 'sh mac address-table', the mac address of the Kali Linux was learnt
+
+
+In the Kali Linux - Application -> Sniffing & Spoofing -> ettercap -> sniff -> network int : eth0  (it starts the unified sniffing) -> hosts (scan starts for the subnets) -> host lists (the ip address and the mac address of the windows pc and the router is visible)
+
+Add the router to target 1 and add the windows host to target 2. 
+
+On the windows host the ARP broadcast was visible with the IP address of the kali linux
+
+Next in the ettercap => Mitm -> ARP poisoning -> Sniff remote connections -> Ok. This is for pooing the pc and the router
+
+Now in the Wireshark running in the PC, we see it complains of duplicate IP from two separate mac address
+
+From the PC while using 'arp -a', we see two IP address from the same Mac Address
+
+While starting the wireshark in Kali, we see traffic being sent from the pc to the router is being channelled through the Kali specially accessing the router from the pc using putty through telnet protocol. This is same while accessing the router through the pc and that getting captured in the wireshark in Kali
+
+The running configuration was copied to the PC through tftp by using: 'copy running-config tftp' (the tftp port in the windows pc had to enabled) and all the data sent by the router (including the passwords) to the pc was captured by the wireshark in the Kali Linux
+
+</Poison Arp Caches in PCs>
 
 
