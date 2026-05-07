@@ -28,3 +28,24 @@ DHCP Snooping:
     - In the switch in int g0/0, 'ip dhcp snooping trust' was excuted, for enabling dhcp access from the router
     - In the windows, 'ip config /renew' was executed to get the IP address and this time a new ip address was allotted 10.1.1.100 
     - In the switch 'ip dhcp snooping limit rate 10' was executed to ensure DHCP attacks were forbidden from the Kali Linux. In times of such attack, networks will go down and the switch will be protected
+
+Dynamic ARP Inspection:
+    - A switch is connected to a Router (R1), a Windows 10 PC and a Kali Linux
+    - A router is connected over the internet
+    - The Kali Linux is connected to the Switch via Eth0 to Gi0/1 of the switch
+    - The Windows 10 is connected to the Switch via NIC0 to Gi0/2 of the switch
+    - The R1 is connected to the Switch via Gi0/0 and to Gi0/0 of the switch
+    - The R1 is connected to the internet via Gi0/1
+    - In the router 'sh run | begin dhcp' is entered and it is seen that the IP address is 10.1.1.0 (on Gi0/0) with network 255.255.255.0, Default gateway is same - 10.1.1.254 and DNS server is set to 8.8.8.8
+    - In R1, with the command 'sh ip dhcp binding', we see IP address allocated to Kali Linux is 10.1.1.2 and for the windows pc the IP address which is allocated is 10.1.1.100
+    - On the Switch, the command 'sh run | i dhcp' is not enabled. Also 'sh run | i arp' is anot enables either. 
+    - On the switch, the following commands were used to turn on DHCP Snooping: 'ip dhcp snooping', 'ip dhcp snooping vlan 1', 'no ip dhcp snooping information option' and now when 'show ip dhcp snooping' was used, we see that DHCP snooping is enabled on the switch as well on the VLANs
+    - We want to trust the Router as the DHCP server and not the Kali Linux as the DHCP server 
+    - In the switch we run the command 'int Gi0/0' and 'ip dhcp trust' and makes sure the port in the switch connecting the router is trusted which is verified by 'sh ip dhcp snooping'
+    - In the switch we rate limit dhcp requests incoming from the KALI Linux through the command - 'int G0/1', 'ip dhcp snooping limit rate 10', 'end'
+    - In the switch we type 'ip arp inspection vlan 1'
+    - In the switch we see, invalid arp messages arrived when ping happens from the windows pc to the default gateway
+    - In the switch we type 'no ip arp inspection vlan 1', and we see the windows pc can once again ping the default gateway connecting the router through the switch and the Kali Linux can also ping the windows as well as the router
+    - In the switch we run the command 'int Gi0/0' and 'ip arp inspection trust' and makes sure the port in the switch connecting the router is trusted which is verified by 'sh run i'
+    - In the windows pc we type - 'ipconfig /release' to release the IP address and 'ipconfig /renew' to renew the ip address and the windows pc can now ping its default gateway
+    - The Kali Linux on the other hand cannot ping the defaultway because it was not added into the DHCP snooping database in the switch
