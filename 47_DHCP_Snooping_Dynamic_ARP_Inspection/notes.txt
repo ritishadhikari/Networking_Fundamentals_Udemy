@@ -1,0 +1,30 @@
+DHCP Snooping:
+    - A switch is connected to a Router (R1), a Windows 10 PC and a Kali Linux
+    - The Kali Linux is connected to the Switch via Eth0 to Gi0/1 of the switch
+    - The Windows 10 is connected to the Switch via NIC0 to Gi0/2 of the switch
+    - The R1 is connected to the Switch via Gi0/0 and to Gi0/0 of the switch
+    - IP address of the PC - 10.1.1.3 and the default gateway is 10.1.1.254 (router ip in Gi0/0)
+    - In R1, doing 'sh ip dhcp binding' provides two IP addresses and mac address (one for windows10 and one for kali)
+    - In Kali, doing ifconfig gives - 10.1.1.2 as the IP
+    - In the windows, 'ip config /release' was executed to release the IP address and then we see it is using a link local IP Version 4 and Version 6 address
+    - In the windows, 'ip config /renew' was executed to get the IP address from the DHCP server in the R1 
+    - In Kali, using Yersinia GUI, an attack was launched using DHCP -> creating DHCP rogue server
+        - Server id - 10.1.1.2
+        - Start IP - 10.1.1.100
+        - End IP - 10.1.1.110
+        - Lease Time - 3600
+        - Renew Time - 3600
+        - Subnet Mask - 255.255.255.0
+        - Router - 10.1.1.2 (Default Gateway)
+        - DNS Server - 8.8.8.8
+        - Domain - home.com
+    - In the router 'no service dhcp' was executed and after executing 'sh ip dhcp binding', we see the bindings have been removed
+    - In the windows, 'ip config /release' and 'ip config /renew' was executed to get the IP address from the Kali Linux and an IP address was allotted 10.1.1.100 from the Kali Linux server using Man in the Middle Attack
+    - In the switch, 'sh ip dhcp snooping' was executed, and it showed it was not configured. So 'ip dhcp snooping' was configured on the switch and with 'sh ip dhcp snooping', it shows to be globally enabled but not enabled in any VLANs
+    - In the switch, 'ip dhcp snooping vlan 1' was executed, to enable the VLAN 1
+    - In the windows, 'ip config /renew' was executed to get the IP address but since DHCP snoooping was enabled in the Switch, hence the windows pc does not get any IP address
+    - In the router 'service dhcp' was executed and with 'dhcp pool pc', the network, default-router and dns-server could be fetched again but 'sh ip dhcp binding' does not show any tagged devices with their IP addresses
+    - In the windows, 'ip config /renew' was executed to get the IP address but since DHCP snoooping was enabled in the Switch (in Gi0/0), hence the windows pc does not get any IP address
+    - In the switch in int g0/0, 'ip dhcp snooping trust' was excuted, for enabling dhcp access from the router
+    - In the windows, 'ip config /renew' was executed to get the IP address and this time a new ip address was allotted 10.1.1.100 
+    - In the switch 'ip dhcp snooping limit rate 10' was executed to ensure DHCP attacks were forbidden from the Kali Linux. In times of such attack, networks will go down and the switch will be protected
