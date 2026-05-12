@@ -1,0 +1,36 @@
+What port security does is :
+    - It looks at the source MAC address of frames received on a port. It can limit a single MAC address or a limited set of Mac address
+    - Only frames from specific MAC addresses are allowed
+    - Limited number of MAC addresses are permitted
+    - Limits connecting to a port that they are not authorized to connect to
+    - Stops a user connecting a hub or wireless access point to the network
+    - It can be classified as an entry level security
+
+Static Port Security:
+    - Statically configure specfic MAC addresses that are allowed or permitted on a port
+    - Gives a lot of control
+    - The disadvantage is that we need to manually work out what the MAC address are
+
+`
+Dynamic Learning:
+    - Provides how many MAC addresses are permitted on a port
+    - Relies on limiting the MAC addresses which are permitted, but not which MAC addresses are permitted
+    - When the switch is reboot and the port goes dowm, the MAC addresses learnt are removed and new MAC addresses are then learnt and is permitted
+
+Combination of Static and Dynamic Learning:
+    - Permit certain mac addresses only
+
+Sticky Learning: 
+    - Automatically add a learnt MAC address to the running configuration of the switch
+
+
+
+Protect:
+    - Drops packets with unknown source MAC addresses until you remove
+Restrict:
+    - Drops packets with unknown source MAC addresses until you remove a sufficient number of secure MAC addresses to drop below the maximum value
+    - It causes the security violation counter to increment and generation of Log Messages and Counters will increment
+Shutdown:
+    - It is the default
+    - Sends SNMP trap notification
+    - Goes to error disabled mode

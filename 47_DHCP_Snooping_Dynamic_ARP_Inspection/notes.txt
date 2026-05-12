@@ -49,3 +49,4 @@ Dynamic ARP Inspection:
     - In the switch we run the command 'int Gi0/0' and 'ip arp inspection trust' and makes sure the port in the switch connecting the router is trusted which is verified by 'sh run i'
     - In the windows pc we type - 'ipconfig /release' to release the IP address and 'ipconfig /renew' to renew the ip address and the windows pc can now ping its default gateway
     - The Kali Linux on the other hand cannot ping the defaultway because it was not added into the DHCP snooping database in the switch
+
