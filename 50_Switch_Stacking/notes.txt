@@ -1,0 +1,9 @@
+In Switche Stacking - The switches are connected in a series with the last switch connected back to the first switch
+
+You would manage the stack with a single management IP address
+Telnet or SSH to one switch
+One configuration file
+STP, CDP, VTP are running on one switch
+The ports on each physical switches appear to be part of the same logical switch
+One MAC Address table
+
