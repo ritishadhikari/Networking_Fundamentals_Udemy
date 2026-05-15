@@ -1,0 +1,70 @@
+ TCP Protocols List (Well Known):
+    - File Transfer Protocol(FTP) - 21,20
+    - Secure Shell (SSH) - 22
+    - Telnet - 23
+    - Simple Mail Transfer Protocol (SMTP) - 25
+    - Hypertext Transfer Protocol (HTTP) - 80
+    - Post Office Protocol (POP3) - 110
+    - Secure Socktet Layer (SSL) - 443
+
+UDP Protocols List (Well Known):
+    - Dynamic Host Control Protocols (DHCP) - 67, 68
+    - Trivial File Transfer Protocol (TFTP) - 69
+    - Simple Network Management Protocol (SNMP) - 161
+
+Both TCP & UDP:
+    - Domain Name Server (DNS) - 53
+
+ACLs:
+    - Permit or deny packets moving through a router
+    - Permit or deny vty access to or from a router
+    - Without ACLs, all packet could be transmitted to all parts of the Network
+    - Interesting traffic for VPN encryption
+    - Redistributing between routing protocols
+    - Create ACL in global configuration mode:
+        - access-list command
+    - Apply inbound or outbound on an interface
+        - access-group 
+        
+Inbound ACLs:
+    - Applied inbound on an interface
+    - ACL processed before being routed
+
+Outbound ACLs:
+    - Routing performed first
+    - Packet directed to outbound 
+    
+Types of ACLs:
+    - Standard ACL
+        - Checks on source IP Address
+        - Permits or denies entire protocol suite
+    - Extended ACL
+        - Checks source and destination address
+        - Permits or denies specific protocols and applications
+            - Ports: 80, 23, 21, 20
+            - IP, TCP, UDP, ICMP
+
+Methods to Identify standard and extended ACLs:
+    - Numbered
+        - 1-99 and 1300-19999 for standard IP ACLs
+        - 100- 199 for IP extended access list 
+    - Named
+        - Alphanumeric Characters
+        - More descriptive
+
+Wildcard Masks:
+    - 0 in mask = match
+    - 1 in mask = 
+
+`access-list 1 permit 10.1.1.1 0.0.0.0` is equivalent to `access-list 1 permit host 10.1.1.1` - Approve this one with exact match
+
+`access-list 1 permit 10.1.1.1 255.255.255.255` is equivalent to `access-list 1 permit 10.1.1.1 1.1.1.1` - Approve this even if there is no match in any octet 
+
+
+`access-list 1 permit 10.1.1.0 0.0.0.255` -> it means the first 3 octets must be an exact match while the fourth octet can be anything
+
+`access-list 1 permit 10.1.1.0 0.0.0.15` is equivalent to `access-list 1 permit 10.1.1.0 00000000.00000000.00000000.00001111` -> it means ignore the last 4 bits of the octet. So any IP between 10.1.1.0 till 10.1.1.15 would be allowed, the rest won't be allowed
+
+
+`access-list 1 permit 10.1.1.124 0.0.0.15` is equivalent to `access-list 1 permit 10.1.1.0111 1100 10.1.1.0 00000000.00000000.00000000.00001111` which means the last foour bits in the last octet can change and hence can range between 10.1.1.112 till 10.1.1.127
+
