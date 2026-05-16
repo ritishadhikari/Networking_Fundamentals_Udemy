@@ -81,3 +81,5 @@ Guidelines for Standard Access List:
     - Overridden without warning
     - Place standard ACLs as close to the destinations as possible (server side)
 
+Guidelines for Extended Access List:
+    - Place Extended ACLs as close to the source as possible (host side)
