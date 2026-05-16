@@ -66,5 +66,18 @@ Wildcard Masks:
 `access-list 1 permit 10.1.1.0 0.0.0.15` is equivalent to `access-list 1 permit 10.1.1.0 00000000.00000000.00000000.00001111` -> it means ignore the last 4 bits of the octet. So any IP between 10.1.1.0 till 10.1.1.15 would be allowed, the rest won't be allowed
 
 
-`access-list 1 permit 10.1.1.124 0.0.0.15` is equivalent to `access-list 1 permit 10.1.1.0111 1100 10.1.1.0 00000000.00000000.00000000.00001111` which means the last foour bits in the last octet can change and hence can range between 10.1.1.112 till 10.1.1.127
+`access-list 1 permit 10.1.1.124 0.0.0.15` is equivalent to `access-list 1 permit 10.1.1.0111 1100 10.1.1.0 00000000.00000000.00000000.00001111` which means the last four bits in the last octet can change and hence can range between 10.1.1.112 till 10.1.1.127
+
+
+Guidelines for Standard Access List:
+    - Standard/Extended indicates what can be filtered
+    - Order of processing is of importance
+        - Place more specific statements first
+    - Implicit deny all at the end of every ACL
+    - Only one ACL 
+        - Per interface
+        - Per direction
+        - Per protocol
+    - Overridden without warning
+    - Place standard ACLs as close to the destinations as possible (server side)
 
