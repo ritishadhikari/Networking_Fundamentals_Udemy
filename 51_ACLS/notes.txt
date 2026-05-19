@@ -83,3 +83,6 @@ Guidelines for Standard Access List:
 
 Guidelines for Extended Access List:
     - Place Extended ACLs as close to the source as possible (host side)
+
+
+`access-list 100 permit tcp host 10.1.2.101 host 10.1.1.100 eq 80` -> Giving access to host 10.1.2.101 to use host 10.1.1.100 only with the tcp port (80)
