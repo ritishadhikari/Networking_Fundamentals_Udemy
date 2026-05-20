@@ -1,0 +1,51 @@
+
+Network Address Translation (NAT):
+    - Translates a private IP address which is non-addressable in the internet to a publicly routable IP Address
+    - The need for NAT IS IPV4 exhaustion
+    - ISPs block traffic of Private IP addresses from flowing out to the internet
+    - Inside Local:
+        - Truly Local
+        - Example PCs at home
+        - See IP address within the local pc
+    - Inside Global:
+        - Seeing the IP address of the PC from the internet
+        - Ask IP address of my laptop to goodle
+    - Outside Local:
+        - Seeing the IP address of the server from within the local PC
+    - Outside Global:
+        - Seeing the IP address of the server from the global interner
+
+Public Vs Private IPV4 addresses
+    - Class A:
+        - Private Address Range:
+            - 10.0.0.0.0 to 10.255.255.255
+        - Public Address Range
+            - 1.0.0.0 to 9.255.255.255
+            - 11.0.0.0 to 126.255.255.255
+    - Class B:
+        - Private Address Range:
+            - 172.16.0.0 to 172.37.255.255
+        - Public Address Range
+            - 128.0.0.0 to 172.15.255.255
+            - 172.32.0.0 to 191.255.255.255
+    - Class C:
+        - Private Address Range:
+            - 192.168.0.0 to 192.168.255.255
+        - Public Address Range
+            - 192.0.0.0 to 192.167.255.255
+            - 192.169.0.0 to 223.255.255.255
+
+Static NAT - 
+    - One to one mapping between a private IPV4 adress with public IPV4 address
+    - 
+
+Dynamic NAT:
+    - Maps a private IPV4 address to a public IPV4 address from a pool or group of public IPV4 addresses
+    - Pool of inside global 
+    - Not very efficient and should be used if deemed absolutely necessary
+    - Router dynamically allocates IP addresses from a pool as when needed basis
+
+Port Address Translation (PAT):
+    -  Maps multiple private IP addresses into a single public IP address
+    - 10 devices in home using 10 different private IP addresses are NATed to use only one public addresses assigned by the ISPs
+    - Also known as NAT overloading
