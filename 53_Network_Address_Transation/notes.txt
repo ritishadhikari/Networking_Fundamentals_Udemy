@@ -37,7 +37,7 @@ Public Vs Private IPV4 addresses
 
 Static NAT - 
     - One to one mapping between a private IPV4 adress with public IPV4 address
-    - 
+    - The mapping is permanant
 
 Dynamic NAT:
     - Maps a private IPV4 address to a public IPV4 address from a pool or group of public IPV4 addresses
