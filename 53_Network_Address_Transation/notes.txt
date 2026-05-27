@@ -51,4 +51,5 @@ Port Address Translation (PAT):
     - Also known as NAT overloading
     - The destnation ip (internet) recognizes the host ip via the port number which is same for the intermediate port
     - For ex. if 10.1.1.1/24 and 10.1.1.4/24 are both trying to ping 8.1.1.2/24 through intermediate 8.1.1.1/24, then we see that the 8.1.1.2/24 replies to 8.1.1.1/24 via 8.1.1.1:35281 which then forwards it to 10.1.1.1:35281 and also 8.1.1.2/24 replies to 8.1.1.1/24 via 8.1.1.1:61350 which then forwards it to 10.1.1.4:61350. Hence it is also called as Port Address Translation
-    - 
+    - By coincidence, if two source ip addresses choose the same port number, the router in the middle chose two different port numbers to keep a mapping of the two different source ip addresses albeit with the same port
+    -   
