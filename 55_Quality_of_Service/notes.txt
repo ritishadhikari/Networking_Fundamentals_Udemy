@@ -1,0 +1,38 @@
+Introduction:
+    - Providing a better quality to certain applications at the detriment of other applications
+    - Introducing unfairness into the network
+    - Traffic Types:
+        - Data : 
+            - Bursty
+            - Greedy (tries to grab as much bandwidth as they can)
+            - Sometimes it is opposite to the above two - smooth and benign
+            - Drop insensitive (If a packet is dropped, does not matter because it it retransmitted); ex. TCP
+            - Delay Insensitive
+            - Two Major Categories : 
+                - Interactive
+                - Non interactive
+        - Voice:
+            - Smooth
+            - Bening (Voice codecs like G729 and G711 requires a certain amount of bandwidth and they need that for the entire voice call)
+            - Drop sensitive (if dropped, will affect the voice conversations)
+            - Delay sensitive (if delayed, will affect the voice conversations)
+            - Transferred via UDP
+            - Requirements (One way):
+                - Latency < 150 ms
+                - Jitter < 30 ms
+                - Loss < 1%
+                - Bandwidth (30-128 kbps)
+        - Video:
+            - Bursty
+            - Greedy
+            - Bandwidth directly proportional to the movement
+            - Drop sensitive
+            - Delay sensitive
+            - UDP
+            - Requirements (One way):
+                - Latency < 150 ms
+                - Jitter < 30 ms
+                - Loss < 0.1-1%
+                - Bandwidth (384 kbps -20+ mbps)
+    - Voice and Video is Prioritized above non-delay sensitive applications such as FTP
+    - Hence we implement policies and mechanisms on a network to prioritize certain traffic types over other traffic types
