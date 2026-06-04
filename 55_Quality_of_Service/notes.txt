@@ -36,3 +36,19 @@ Introduction:
                 - Bandwidth (384 kbps -20+ mbps)
     - Voice and Video is Prioritized above non-delay sensitive applications such as FTP
     - Hence we implement policies and mechanisms on a network to prioritize certain traffic types over other traffic types
+
+Trust Boundary:
+    - Untrusted Domain
+        - Part of the network that you are not managing 
+    - Trusted Domain
+        - Part of the network that only administrators can manage
+
+Policers:
+    - Performs checks for traffic violations against a configured rate
+    - Do not delay the traffic
+
+Shapers:
+    - Does not drop the traffic but smooth it by delaying the traffic 
+    - Are usually used to meet Service Level Agreements
+    - Happens when the traffic spikes above the contracted rate
+    - Excess traffic is buffered
