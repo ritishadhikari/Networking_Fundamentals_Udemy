@@ -52,3 +52,34 @@ Shapers:
     - Are usually used to meet Service Level Agreements
     - Happens when the traffic spikes above the contracted rate
     - Excess traffic is buffered
+
+Queuing:
+    - FIFO (First In First Out):
+        - A single queue with packets that are sent in the exact order they arrived
+    - PQ (Priority Queue):
+        - Consists of four queue's that are served in a strict priority order
+        - The lower priority queues are served only when the higher-priority queues are empty
+        - Ranked as per - High, Medium, Normal, Low
+        - Classification can be done based on the protocols and lower priority queues can be starved by the higher priority queues
+    - CQ (Custom Queuing):
+        - 16 queues are serviced in a round robin fashion
+        - In order to prevent starvation
+        - It provides traffic guarantees
+        - Does not provide strict priority for real time traffic
+        - Introduces delay, for ex., if you have important voice traffic arriving it will be serviced in its round
+    - WFQ (Weighted Fair Queuing )
+        - Algorithm that divides ethernet bandwidth by the number of flows
+        - It provides a good service for real-time traffic
+        - No bandwidth guarantees for particular flows
+        - Gives preferences to smaller packets over larger packets
+        - Does not provide Bandhwidth guarantees
+    - CBWFQ (Class-Based Weighted Fair Queuing):
+        - Traffic classes get fair bandwidth guarantees
+        - Guarantees minimum bandwidth to each and every protocol - HTTP, FTP, Voice, Video, etc
+        - No latency guarantees
+        - Suitable for Data Networks
+    - LLQ (Low Latency Queuing):
+        - Takes the previous model (CBWFQ)
+        - Adds a queue with strict priority (for real-time traffic)
+        - While Minimum bandwidth is guaranteed, it also exercise strict policing for higher bandwidth Data
+        - Suitable for Voice data
