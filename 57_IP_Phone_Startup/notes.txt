@@ -1,0 +1,14 @@
+Phone Startup Process:
+    - IP Phone Obtains power
+        - Use Power Cube
+        - Power Injector
+        - Power over ethernet (with 6.3w)
+        - 802.3af : POE (15.4W)
+        - 802.3at : POE+ (30W)
+    - IP Phone loads locally stored image
+    - Switch provides VLAN information via CDP/LLDP-MED
+        - Phone queries switch for VLAN information
+    - IP Phone requires an IP address
+    - IP Phone downloads firmware / configuration from TFTP server
+    - IP Phone downloads softkey template
+    - 
