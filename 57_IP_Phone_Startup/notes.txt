@@ -11,4 +11,3 @@ Phone Startup Process:
     - IP Phone requires an IP address
     - IP Phone downloads firmware / configuration from TFTP server
     - IP Phone downloads softkey template
-    - 
