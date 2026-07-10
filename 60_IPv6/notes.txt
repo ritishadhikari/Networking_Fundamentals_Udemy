@@ -21,11 +21,12 @@ IPV6 Address Types:
         - Network Prefix (64 bits) containing Public Topology (First 48 bits) and SLA ID (next 16 bits), Interface Identifier (64 bits)
         - There is no subneting in IPV6 and is always 64 bits
         - There is no NAT like in IPV4
-        - 
     - Multicast:
         - One to many
         - Enables more efficient use of the network
         - Uses a larger address range
+        - Any address starting with FF02
+        - There are no broadcasts
     - Anycast:
         - One to nearest (allocated from unicast address space)
         - Multiple devices share the same address
@@ -45,3 +46,15 @@ IPV6 Aggregatable Global Unicast Address:
         - 2001:1234:1:2::/64
         - 2001:1234:1:3::/64
 
+IPV6 Routing Protocols: 
+    - Static
+    - PIPng (RFC 2080)
+        - Distance Vector
+        - Radius of 15 hops
+        - Split horizon
+        - Poison Reverse
+        - Based on RIPv2
+    - OSPFv3 (RFC 2740)
+    - IS-IS for IPV6
+    - MP-BGP4 (RFC 2545/2858)
+    - EIGRP for IPv6
