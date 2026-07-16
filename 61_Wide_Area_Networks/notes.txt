@@ -1,0 +1,27 @@
+Point to Point Protocols:
+    - Also called a serial Link
+    - Provides a dedicated connection between two sites
+    - You are leasing a cable or connection or line between sites
+    - The enterprise is not concerned with what is happening within the service provider network
+    - Infrastructure used is connected by a provider, ex. AT&T or British Telecom
+    - Have been replaced largely by Virtual Private Networks (VPNs)
+    - 
+
+Point to Point WAN connections:
+
+
+High Level Data Link Control (HDLC):
+    - In an Intersite transfer of IP Packets, the routers strips of the ethernet layer 2 headers with the HDLC and then sends the frame across to the WAN subsequently to the destination
+    - When the destnation router receives the HDLC frame, it strips the HDLC header and sends the original IP packet sent from the origin onto the local area network of the destination using an ethernet header
+
+WAN connects devices separated by a large geographical areas
+
+
+Leased Line:
+    - Implies that you are leasing the line from a provider
+    - You don't own the connection
+    - A monthly leasing fee is paid to lease the line from the service provider
+    - High Quality of service since the bandwidth of the connection is dedicated to you and you alone
+    - The cost is more when the number of sites are more
+    - You are charged for the bandwidth whether you use it or not
+    - You are limited to the speed of the link, i.e., 2MBPS
