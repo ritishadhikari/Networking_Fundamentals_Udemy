@@ -23,3 +23,11 @@
         - Verify that each packet is unique and not duplicated
 
 
+IPSec (IP Security):
+    - Network layer protocol (suite of protocols)
+    - Protects and authenticates IP packets
+    - Framework of open standards that is algorithm independent
+    - Protocols includes - ESP or AH or ESP + AH
+    - Encryption - DES or 3DES or AES
+    - Authentication - MD5 or SHA
+    - DH - DH1 or DH2 or DH5
