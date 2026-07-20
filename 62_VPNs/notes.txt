@@ -1,0 +1,25 @@
+- VPNs allows to send traffic securely over an insecure medium 
+- Private information can be sent securely without interception
+- Traffic is encrypted so that confidentiality is maintained
+- Was mainly developed for protocols which were non-encrypted like - FTP, Telnet, SMTP, HTTP, SNMP v1
+- Asymmetric algorithm:
+    - Different keys are used for encryption and decryption. Ex. Public key algorithms
+    - Something encrypted with your private key can only be decrypted with your public key
+    - Something encrypted with your public key can only be decrypted with your private key
+    - A public key must be generated from a private key
+- Symmetric algorithm:
+    - Same key is used for encryption and decryption. Ex. Secret key algorithms
+    - Recommended algorithm is AES for VPNs for corporate environment
+
+- Significance of using VPNs:
+    - Data confidentiality  
+        - No one else should be able to read the information by manipulating the Data
+        - Provided by data encryption and keys
+    - Data integrity:
+        - Know that the data has traversed unchanged between the two parties
+    - Data Origin Authentication:
+        - The receiver can verify that the protected data could only have originated from the sender
+    - Antireplay protection:
+        - Verify that each packet is unique and not duplicated
+
+
