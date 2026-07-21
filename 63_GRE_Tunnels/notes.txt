@@ -1,0 +1,5 @@
+Introduction:
+    - GRE Tunnels are point to point tunnels that allows one to transport multiple higher layer protocols like IPv4, IPv6
+    - Does not provide authorization and authentication and provide point to point tunnel
+    - IPsec tunnels are used to provide authentication and authorization
+    - It has its own protocol type

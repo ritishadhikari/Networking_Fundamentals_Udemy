@@ -22,7 +22,6 @@
     - Antireplay protection:
         - Verify that each packet is unique and not duplicated
 
-
 IPSec (IP Security):
     - Network layer protocol (suite of protocols)
     - Protects and authenticates IP packets
