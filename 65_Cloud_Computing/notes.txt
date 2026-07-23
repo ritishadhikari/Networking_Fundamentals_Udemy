@@ -1,0 +1,10 @@
+Types of Hypervisors:
+    - Type 1 Native or Bare Metal hypervisors:
+        - These hypervisors run directly on the host's hardware to control the hardware and to manage guest operating systems
+        - They are sometimes called baremetal hypervisors
+        - Ex. Xen, Oracle VM Server for SPARC, Oracle VM Server for X86, Microsoft Hyper-V and VMWare ESX/ESXi
+    - Type 2 or hosted hypervisors:
+        - These hypervisors run on a conventional OS just as other computer programs do
+        - A guest OS runs as a process on the host
+        - These hypervisors abstracts guest OS from the host OS 
+        - Ex. Virtual Box, VMWare Workstation
