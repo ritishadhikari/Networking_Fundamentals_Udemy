@@ -1,0 +1,3 @@
+Infrastructure Mode:
+    - Needs Access points which is connected to the physical networks such as a switch
+
