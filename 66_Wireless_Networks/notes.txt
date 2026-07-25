@@ -1,3 +1,10 @@
 Infrastructure Mode:
     - Needs Access points which is connected to the physical networks such as a switch
 
+WPA-Personal:
+    - Also referred to as WPA-PSK (pre-shared key) mode
+    - Designed for home and small office networks and doesn't require an authentication server
+
+WPA-Enterprise:
+    - Also referred to as WPA-802.1x mode and sometimes just WPA 
+    - Designed for enterprise networks and requires a RADIUS authentication server
