@@ -1,0 +1,4 @@
+Channels:
+    - Range of frequencies
+    - Channels must be non-over lapping
+    - 
